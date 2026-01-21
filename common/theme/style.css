@@ -1,0 +1,85 @@
+/* Common theme styles for the React course */
+
+/* Course branding */
+:root {
+  --course-primary: #61dafb;
+  --course-secondary: #282c34;
+  --course-accent: #20232a;
+}
+
+/* Custom slide layouts */
+.slidev-layout {
+  padding: 2rem;
+}
+
+/* Code block enhancements */
+.slidev-code {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Module navigation aids */
+.module-footer {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  z-index: 100;
+}
+
+/* Hub-specific styles */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.hub-card {
+  background: rgba(97, 218, 251, 0.05);
+  border: 2px solid rgba(97, 218, 251, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hub-card:hover {
+  background: rgba(97, 218, 251, 0.1);
+  border-color: rgba(97, 218, 251, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hub-card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hub-card h3 {
+  color: var(--course-primary);
+  margin-bottom: 0.5rem;
+}
+
+.hub-card p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Live editor focus mode */
+.slide-content.focus-mode {
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content.focus-mode .sandbox-container {
+  width: 95vw;
+  height: 90vh;
+  max-width: none;
+}

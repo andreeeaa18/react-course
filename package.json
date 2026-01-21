@@ -1,0 +1,28 @@
+{
+  "name": "react-course-monorepo",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "slides/*",
+    "common"
+  ],
+  "scripts": {
+    "dev:hub": "cd slides/00-hub && slidev slides.md --port 3030",
+    "dev:fundamentals": "cd slides/01-fundamentals && slidev slides.md --port 3031",
+    "dev:hooks": "cd slides/02-hooks && slidev slides.md --port 3032",
+    "build": "node scripts/build.mjs",
+    "preview": "npx serve dist"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.20.0",
+    "@slidev/cli": "^52.11.3",
+    "sandpack-vue3": "^3.1.12",
+    "slidev-theme-neversink": "^0.4.1",
+    "vue": "^3.5.26"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

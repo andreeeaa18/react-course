@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+.pnpm-debug.log
+
+# Build output
+dist
+*.local
+
+# Slidev
+.vite-inspect
+.remote-assets
+components.d.ts
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
