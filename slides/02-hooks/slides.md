@@ -12,7 +12,7 @@ layout: cover
 Master useState, useEffect, and Custom Hooks
 
 <div class="abs-br m-6 opacity-50 text-sm">
-  <a href="/">← Back to Hub</a>
+  <a href="../">← Back to Hub</a>
 </div>
 
 ---
@@ -163,7 +163,7 @@ Continue to Module 3: Advanced Patterns to learn about performance optimization!
 </v-click>
 
 <div class="abs-br m-6 opacity-50 text-sm">
-  <a href="/">← Back to Hub</a>
+  <a href="../">← Back to Hub</a>
 </div>
 
 ---
@@ -173,5 +173,5 @@ layout: end
 # Module 2 Complete! 🎉
 
 <div class="abs-br m-6 opacity-50 text-sm">
-  <a href="/">← Back to Hub</a> | <a href="/01-introduction/">← Previous</a>
+  <a href="../">← Back to Hub</a> | <a href="../01-introduction/">← Previous</a>
 </div>

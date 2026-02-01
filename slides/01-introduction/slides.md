@@ -20,7 +20,7 @@ Fundamente, Ecosistem și Librării
 </div>
 
 <div class="abs-br mb-10 mr-4 opacity-50 text-sm">
-  <a href="/">← Back to Hub</a>
+  <a href="../">← Back to Hub</a>
 </div>
 
 ---

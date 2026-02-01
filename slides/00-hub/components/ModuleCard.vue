@@ -72,8 +72,8 @@ const moduleUrl = computed(() => {
     const port = devPorts[props.module]
     return `http://localhost:${port}/`
   } else {
-    // Production: use relative path
-    return `/${props.module}/`
+    // Production: use relative path (works with any base path)
+    return `${props.module}/`
   }
 })
 </script>
