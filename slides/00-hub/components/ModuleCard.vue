@@ -62,7 +62,7 @@ const moduleUrl = computed(() => {
 </script>
 
 <template>
-  <a :href="moduleUrl" class="hub-card no-underline" :class="{ complete: isCompleted }" target="_blank">
+  <a :href="moduleUrl" class="hub-card no-underline" :class="{ complete: isCompleted }">
     <div class="hub-card-icon">{{ icon }}</div>
     <div class="hub-card-content">
       <h3>{{ title }}</h3>

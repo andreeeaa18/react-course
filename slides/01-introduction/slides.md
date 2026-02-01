@@ -19,10 +19,6 @@ Fundamente, Ecosistem și Librării
 <GithubLink repo="https://github.com/cristi-usm/react-course" />
 </div>
 
-<div class="abs-br mb-10 mr-4 opacity-50 text-sm">
-  <a href="../">← Back to Hub</a>
-</div>
-
 ---
 layout: cover
 align: c
