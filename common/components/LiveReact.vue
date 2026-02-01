@@ -1,8 +1,8 @@
 <template>
-  <div class="sandbox-container" @keydown.stop @keyup.stop @keypress.stop>
-    <SandpackProvider :template="template" :files="files" :custom-setup="customSetup" :theme="theme">
+  <div class="sandbox-container" @keydown.stop @keyup.stop @keypress.stop :style="containerStyle">
+    <SandpackProvider :template="template" :files="sandpackFiles" :custom-setup="customSetup" :theme="effectiveTheme">
       <SandpackLayout>
-        <SandpackFileExplorer />
+        <SandpackFileExplorer v-if="showFileExplorer" />
         <SandpackCodeEditor :extensions="extensions" :extensionsKeymap="extensionsKeymap"
           :showLineNumbers="sandpackOptions.showLineNumbers" :showInlineErrors="sandpackOptions.showInlineErrors"
           :wrapContent="sandpackOptions.wrapContent" :editorHeight="sandpackOptions.editorHeight"
@@ -17,6 +17,9 @@
 import { SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackPreview, SandpackFileExplorer } from 'sandpack-vue3';
 import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import { computed } from 'vue';
+import { useDarkMode } from '@slidev/client';
+
+const { isDark } = useDarkMode();
 
 const props = defineProps({
   code: {
@@ -37,13 +40,21 @@ export default function App() {
   );
 }`
   },
+  files: {
+    type: Object,
+    default: null
+  },
+  showFileExplorer: {
+    type: Boolean,
+    default: false
+  },
   dependencies: {
     type: Object,
     default: () => ({})
   },
   theme: {
     type: String,
-    default: 'dark'
+    default: null
   },
   editorHeight: {
     type: [String, Number],
@@ -69,9 +80,14 @@ export default function App() {
 
 const template = 'react';
 
-const files = computed(() => ({
-  '/App.js': props.code,
-}));
+const sandpackFiles = computed(() => {
+  if (props.files) {
+    return props.files;
+  }
+  return {
+    '/App.js': props.code,
+  };
+});
 
 const customSetup = computed(() => ({
   dependencies: {
@@ -91,21 +107,19 @@ const sandpackOptions = computed(() => ({
   closableTabs: props.showTabs
 }));
 
+const containerStyle = computed(() => {
+  const heightValue = typeof props.editorHeight === 'number' ? `${props.editorHeight}px` : props.editorHeight;
+  return {
+    height: heightValue,
+    minHeight: heightValue
+  };
+});
+
+const effectiveTheme = computed(() => {
+  // Use explicit theme prop if provided, otherwise follow presentation theme
+  return props.theme || (isDark.value ? 'dark' : 'light');
+});
+
 const extensions = [autocompletion()];
 const extensionsKeymap = [completionKeymap];
 </script>
-
-<style scoped>
-.sandbox-container {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 1rem 0;
-}
-
-/* Ensure proper sizing in slides */
-.sandbox-container :deep(.sp-wrapper) {
-  min-height: 700px;
-}
-</style>

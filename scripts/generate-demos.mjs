@@ -27,6 +27,74 @@ function log(message, color = 'reset') {
 }
 
 /**
+ * Recursively get all files in a directory
+ */
+function getAllFiles(dirPath, rootDir) {
+  const files = fs.readdirSync(dirPath);
+  let fileMap = {};
+
+  for (const file of files) {
+    const filePath = path.join(dirPath, file);
+    const stat = fs.statSync(filePath);
+    const relativePath = '/' + path.relative(rootDir, filePath).replace(/\\/g, '/');
+
+    if (stat.isDirectory()) {
+      fileMap = { ...fileMap, ...getAllFiles(filePath, rootDir) };
+    } else {
+      fileMap[relativePath] = fs.readFileSync(filePath, 'utf-8');
+    }
+  }
+
+  return fileMap;
+}
+
+/**
+ * Generate Vue wrapper component from a directory of files
+ */
+function generateVueWrapperForFolder(dirPath, modulePath) {
+  const componentName = path.basename(dirPath);
+  const vueComponentPath = path.join(
+    modulePath,
+    'components',
+    `${componentName}.vue`
+  );
+
+  const files = getAllFiles(dirPath, dirPath);
+
+  const filesString = JSON.stringify(files);
+  const escapedFilesString = filesString
+    .replace(/\\/g, '\\\\')
+    .replace(/`/g, '\\`')
+    .replace(/\$/g, '\\$');
+
+  const vueTemplate = `<script setup>
+import LiveReactComponent from '../../../common/components/LiveReact.vue'
+
+const files = JSON.parse(\`${escapedFilesString}\`);
+</script>
+
+<template>
+  <LiveReactComponent
+    :files="files"
+    :showFileExplorer="true"
+    :editorHeight="700"
+  />
+</template>
+`;
+
+  // Ensure components directory exists
+  const componentsDir = path.dirname(vueComponentPath);
+  if (!fs.existsSync(componentsDir)) {
+    fs.mkdirSync(componentsDir, { recursive: true });
+  }
+
+  fs.writeFileSync(vueComponentPath, vueTemplate, 'utf-8');
+
+  return { componentName, vueComponentPath };
+}
+
+
+/**
  * Generate Vue wrapper component from JSX file
  */
 function generateVueWrapper(jsxPath, modulePath) {
@@ -91,19 +159,25 @@ function processModule(moduleName) {
     return [];
   }
 
-  const jsxFiles = fs.readdirSync(demosDir)
-    .filter(file => file.endsWith('.jsx'));
-
   const results = [];
+  const demoEntries = fs.readdirSync(demosDir);
 
-  for (const jsxFile of jsxFiles) {
-    const jsxPath = path.join(demosDir, jsxFile);
+  for (const demoEntry of demoEntries) {
+    const entryPath = path.join(demosDir, demoEntry);
+    const stat = fs.statSync(entryPath);
+
     try {
-      const result = generateVueWrapper(jsxPath, modulePath);
-      results.push(result);
-      log(`✅ Generated ${result.componentName}.vue from ${moduleName}/demos/${jsxFile}`, 'green');
+      if (stat.isDirectory()) {
+        const result = generateVueWrapperForFolder(entryPath, modulePath);
+        results.push(result);
+        log(`✅ Generated ${result.componentName}.vue from ${moduleName}/demos/${demoEntry}`, 'green');
+      } else if (demoEntry.endsWith('.jsx')) {
+        const result = generateVueWrapper(entryPath, modulePath);
+        results.push(result);
+        log(`✅ Generated ${result.componentName}.vue from ${moduleName}/demos/${demoEntry}`, 'green');
+      }
     } catch (error) {
-      log(`❌ Error processing ${jsxFile}: ${error.message}`, 'yellow');
+      log(`❌ Error processing ${demoEntry}: ${error.message}`, 'yellow');
     }
   }
 
@@ -137,7 +211,7 @@ function processAllModules() {
   if (totalGenerated > 0) {
     log(`✨ Generated ${totalGenerated} Vue wrapper component(s)`, 'bright');
   } else {
-    log('ℹ️  No .jsx demo files found. Create demos in slides/*/demos/*.jsx', 'blue');
+    log('ℹ️  No .jsx demo files or demo folders found.', 'blue');
   }
 }
 
@@ -162,10 +236,10 @@ function watchMode() {
     const demosDir = path.join(SLIDES_DIR, moduleName, 'demos');
 
     if (fs.existsSync(demosDir)) {
-      watch(demosDir, { recursive: false }, (eventType, filename) => {
-        if (filename && filename.endsWith('.jsx')) {
+      watch(demosDir, { recursive: true }, (eventType, filename) => {
+        if (filename) {
           log(`\n📝 Detected change in ${moduleName}/demos/${filename}`, 'yellow');
-          processModule(moduleName);
+          processAllModules();
         }
       });
     }

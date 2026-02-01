@@ -6,6 +6,7 @@
   "exports": {
     "./components/*": "./components/*",
     "./setup/*": "./setup/*",
-    "./theme/*": "./theme/*"
+    "./theme/*": "./theme/*",
+    "./vite/*": "./vite/*"
   }
 }

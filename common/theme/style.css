@@ -1,12 +1,5 @@
 /* Common theme styles for the React course */
 
-/* Course branding */
-:root {
-  --course-primary: #61dafb;
-  --course-secondary: #282c34;
-  --course-accent: #20232a;
-}
-
 /* Custom slide layouts */
 .slidev-layout {
   padding: 2rem;
@@ -28,58 +21,116 @@
   z-index: 100;
 }
 
-/* Hub-specific styles */
-.hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.hub-card {
-  background: rgba(97, 218, 251, 0.05);
-  border: 2px solid rgba(97, 218, 251, 0.2);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-align: center;
-}
-
-.hub-card:hover {
-  background: rgba(97, 218, 251, 0.1);
-  border-color: rgba(97, 218, 251, 0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.hub-card-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hub-card h3 {
-  color: var(--course-primary);
-  margin-bottom: 0.5rem;
-}
-
-.hub-card p {
-  opacity: 0.8;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
 /* Live editor focus mode */
-.slide-content.focus-mode {
-  padding: 0;
-  height: 100vh;
+.slide-content.focus-mode,
+.slidev-layout.focus-mode {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  padding: 1.5rem !important; /* Added padding */
+  height: 100vh !important;
+  width: 100% !important;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  z-index: 1000; /* Ensure it stays on top */
 }
 
-.slide-content.focus-mode .sandbox-container {
-  width: 95vw;
-  height: 90vh;
-  max-width: none;
+.slide-content.focus-mode .sandbox-container,
+.slidev-layout.focus-mode .sandbox-container {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Sandbox container styling to fix editor height issues */
+.sandbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Ensure SandpackProvider wrapper expands to fill container */
+.sandbox-container .sp-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100% !important;
+}
+
+/* Ensure SandpackLayout respects the container height */
+.sandbox-container .sp-layout {
+  display: flex;
+  flex-direction: row !important; /* Force horizontal layout */
+  flex: 1;
+  min-height: 0;
+  height: 100% !important;
+  background-color: var(--course-secondary); /* Ensure background is dark */
+}
+
+/* Make sure the code editor area can grow */
+.sandbox-container .sp-code-editor {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Target the actual editor container */
+.sandbox-container .sp-code-editor-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Balance file explorer size with editor and preview */
+.sandbox-container .sp-file-explorer {
+  flex: 0.6; /* Smaller than editor and preview */
+  min-width: 200px;
+  max-width: 300px;
+  min-height: 0;
+  height: 100% !important;
+  overflow: auto;
+}
+
+/* Ensure the CodeMirror editor fills its container */
+.sandbox-container .cm-editor {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+/* Fix for the editor content */
+.sandbox-container .cm-content {
+  min-height: 100% !important;
+}
+
+/* Additional fixes for Sandpack internal structure */
+.sandbox-container .sp-stack {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100% !important; /* Force stack to take full height */
+}
+
+.sandbox-container .sp-preview-container {
+  flex: 1;
+  min-height: 0;
+  height: 100% !important;
+  overflow: hidden;
+}
+
+/* Ensure the preview iframe also respects height */
+.sandbox-container .sp-preview-iframe {
+  height: 100%;
+  min-height: 100%;
 }

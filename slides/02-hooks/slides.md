@@ -173,5 +173,5 @@ layout: end
 # Module 2 Complete! 🎉
 
 <div class="abs-br m-6 opacity-50 text-sm">
-  <a href="/">← Back to Hub</a> | <a href="/01-fundamentals/">← Previous</a>
+  <a href="/">← Back to Hub</a> | <a href="/01-introduction/">← Previous</a>
 </div>
