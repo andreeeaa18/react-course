@@ -41,7 +41,7 @@ Când introduci `google.com` și apeși Enter, ce se întâmplă de fapt în ace
 layout: cover
 ---
 
-![Arhitectura Web](./Components-of-Web-Application-Architecture.webp)
+![Arhitectura Web](/Components-of-Web-Application-Architecture.webp)
 
 ---
 layout: top-title
@@ -152,7 +152,7 @@ Ce primim înapoi.
 layout: cover
 ---
 
-![Arhitectura Web](./http-request.webp)
+![Arhitectura Web](/http-request.webp)
 
 
 ---
@@ -335,7 +335,7 @@ Aceasta a fost perioada "Browser Wars" (Netscape vs Internet Explorer). Dezvolta
 layout: cover
 ---
 
-![Arhitectura Web](./web1.jpg)
+![Arhitectura Web](/web1.jpg)
 
 ---
 layout: top-title-two-cols
@@ -375,7 +375,7 @@ Web-ul a devenit **Read-Write**. Utilizatorii nu doar citeau, ci creau conținut
 layout: cover
 ---
 
-![Arhitectura Web](./web2.png)
+![Arhitectura Web](/web2.png)
 
 ---
 layout: top-title
@@ -489,7 +489,7 @@ Pe măsură ce aplicațiile au devenit complexe:
 ---
 layout: cover
 ---
-![Webpack Bundling](./webpack.png)
+![Webpack Bundling](/webpack.png)
 
 ---
 layout: top-title
