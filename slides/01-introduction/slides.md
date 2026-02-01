@@ -8,7 +8,7 @@ info: 'React Course · Crudu Cristian · 2026'
 lineNumbers: true
 draw:
   enabled: true
-favicon: '/react.svg'
+favicon: './react.svg'
 ---
 
 ## Introducere în Dezvoltarea Web Modernă
@@ -16,7 +16,7 @@ favicon: '/react.svg'
 Fundamente, Ecosistem și Librării
 
 <div class="absolute top-2 right-2 w-8 h-8">
-<GithubLink repo="https://github.com/cristi-usm/react-native-course" />
+<GithubLink repo="https://github.com/cristi-usm/react-course" />
 </div>
 
 <div class="abs-br mb-10 mr-4 opacity-50 text-sm">

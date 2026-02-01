@@ -23,7 +23,7 @@ const hubUrl = computed(() => {
   if (typeof window === 'undefined') return '#'
 
   const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  return isDev ? 'http://localhost:3030/10' : '../10'
+  return isDev ? 'http://localhost:3030/2' : '../2'
 })
 
 function process_colors() {

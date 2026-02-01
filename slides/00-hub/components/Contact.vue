@@ -5,10 +5,6 @@ import InfoCard from '../../../common/components/InfoCard.vue'
 
 <template>
   <CardContainer layout="flex">
-    <InfoCard icon="🕒" title="Anunțarea Absențelor" style="flex-basis: 45%;">
-      <p>Dacă nu puteți frecventa, vă rog să anunțați în prealabil.</p>
-    </InfoCard>
-
     <InfoCard icon="📬" title="Contact" style="flex-basis: 45%;">
       <div class="contact-list">
         <div class="contact-item">
@@ -26,7 +22,7 @@ import InfoCard from '../../../common/components/InfoCard.vue'
 
 <style scoped>
 .contact-list {
-  text-align: left;
+  text-align: center;
   width: 100%;
 }
 

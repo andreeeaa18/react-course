@@ -24,20 +24,6 @@ const props = defineProps({
 // Module order definition
 const modules = [
   '01-introduction',
-  '02-hooks',
-  '03-advanced',
-  '04-ecosystem',
-  '05-state',
-  '06-perf',
-  '07-testing',
-  '08-native',
-  '09-nextjs',
-  '10-api',
-  '11-auth',
-  '12-forms',
-  '13-deploy',
-  '14-a11y',
-  '15-project'
 ]
 
 // Determine completion status
@@ -46,7 +32,7 @@ const isCompleted = computed(() => {
   const myIndex = modules.indexOf(props.module)
   // If the current module is not found or this module is not found, default to false
   if (currentIndex === -1 || myIndex === -1) return false
-  
+
   // Completed if this module comes strictly before the current active module
   // Or should it include the current one? "passed the lesson" implies strictly before.
   // But usually "current" implies "in progress", so previous ones are done.
@@ -56,9 +42,6 @@ const isCompleted = computed(() => {
 // Development port mapping
 const devPorts = {
   '01-introduction': 3031,
-  '02-hooks': 3032,
-  '03-advanced': 3033,
-  '04-ecosystem': 3034
 }
 
 // Detect environment
@@ -119,8 +102,10 @@ a.no-underline {
 }
 
 .hub-card.complete {
-  border-color: rgba(74, 222, 128, 0.5); /* Green border */
-  background: rgba(74, 222, 128, 0.05); /* Slight green tint */
+  border-color: rgba(74, 222, 128, 0.5);
+  /* Green border */
+  background: rgba(74, 222, 128, 0.05);
+  /* Slight green tint */
 }
 
 .hub-card.complete:hover {
@@ -142,7 +127,8 @@ a.no-underline {
 
 .hub-card-content {
   flex: 1;
-  min-width: 0; /* Crucial for text truncation in flex items */
+  min-width: 0;
+  /* Crucial for text truncation in flex items */
   overflow: hidden;
 }
 
@@ -158,7 +144,8 @@ a.no-underline {
 }
 
 .hub-card.complete h3 {
-  color: #4ade80; /* Green title for completed */
+  color: #4ade80;
+  /* Green title for completed */
 }
 
 .hub-card p {

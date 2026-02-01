@@ -67,7 +67,7 @@ defineProps({
   opacity: 0.9;
   color: var(--neversink-admon-text-color);
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 
 .info-card-content :deep(strong) {
