@@ -174,6 +174,12 @@ function main() {
   logSection('🎬 React Course Build Orchestrator');
   log('Building multi-deck Slidev courseware...', 'bright');
 
+  // Get base path prefix from environment variable (for GitHub Pages)
+  const basePathPrefix = process.env.BASE_PATH || '';
+  if (basePathPrefix) {
+    log(`Using base path prefix: ${basePathPrefix}`, 'yellow');
+  }
+
   // Step 1: Prepare
   prepareDistDirectory();
 
@@ -196,7 +202,8 @@ function main() {
 
   for (const deck of decks) {
     const isHub = deck.name.includes('hub');
-    const basePath = isHub ? '/' : `/${deck.name}/`;
+    const deckPath = isHub ? '/' : `/${deck.name}/`;
+    const basePath = basePathPrefix + deckPath;
 
     buildDeck(
       isHub ? 'hub' : deck.name,
