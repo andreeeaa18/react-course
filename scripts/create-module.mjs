@@ -79,11 +79,11 @@ fs.mkdirSync(modulePath);
 fs.mkdirSync(path.join(modulePath, 'components'));
 fs.mkdirSync(path.join(modulePath, 'setup'));
 
-// Create symlink to global-bottom.vue
-const globalBottomPath = path.join(modulePath, 'global-bottom.vue');
-const globalBottomTarget = '../../common/global-bottom.vue';
-fs.symlinkSync(globalBottomTarget, globalBottomPath);
-log('✅ Created symlink to global-bottom.vue', 'green');
+// Copy global-bottom.vue from common (Back to Courses button)
+const globalBottomSource = path.join(ROOT, 'common', 'global-bottom.vue');
+const globalBottomDest = path.join(modulePath, 'global-bottom.vue');
+fs.copyFileSync(globalBottomSource, globalBottomDest);
+log('✅ Copied global-bottom.vue from common', 'green');
 
 // 4. Write Files
 

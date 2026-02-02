@@ -415,41 +415,190 @@ Astăzi, Frontend-ul nu mai este doar "design". Este o aplicație software compl
 
 
 ---
+layout: section
+color: sky-light
+---
+
+# Motorul din Spate: Node.js și npm
+Înainte de a construi, avem nevoie de unelte.
+
+---
+layout: top-title-two-cols
+columns: is-6
+color: sky-light
+align: c-lt-lt
+---
+
+:: title ::
+# Node.js: JavaScript dincolo de Browser
+
+:: left ::
+
+## Ce este?
+Un runtime de JavaScript construit pe motorul V8 de la Google Chrome.
+
+- **Nu este un limbaj**, ci un mediu de execuție.
+- Permite rularea JS pe **server** sau direct pe **computerul tău**.
+
+:: right ::
+
+## De ce avem nevoie de el?
+Pentru dezvoltarea React, Node.js este esențial pentru:
+
+<div class="ns-c-tight">
+
+- Rularea scripturilor de development.
+- Gestionarea pachetelor (librăriilor).
+- Transformarea codului (Build process).
+- Rularea serverelor de test locale.
+
+</div>
+
+:: default ::
+
+<AdmonitionType type="tip" class="mt-4">
+Node.js ne permite să folosim JavaScript pentru a construi unelte care, la rândul lor, ne ajută să construim site-uri.
+</AdmonitionType>
+
+---
 layout: top-title
 align: c
 color: sky-light
 ---
 
 :: title ::
-# De ce avem nevoie de un "Build Tool"?
+# npm
 
 :: content ::
 
-Browserul este o mașinărie care înțelege doar **HTML, CSS și JavaScript (vanilla)**. React, însă, folosește concepte pe care browserul nu le poate rula direct.
+**npm** (Node Package Manager) este cel mai mare registru de software din lume.
 
-<div class="grid grid-cols-2 gap-6 mt-4 mb-4">
+<div class="grid grid-cols-2 gap-8 mt-4">
 
-<InfoCard title="Problema JSX">
+<div class="bg-white p-4 rounded shadow-sm border-t-4 border-red-500">
+<h3 class="font-bold mb-2">📦 Registry</h3>
+O bază de date uriașă cu cod scris de alți programatori (peste 2 milioane de pachete).
+</div>
 
-JSX arată ca HTML, dar este JavaScript. Browserul va arunca o eroare de tip `SyntaxError` dacă încerci să-l rulezi direct.
-
-</InfoCard>
-
-<InfoCard title="Module NPM">
-
-React și alte librării vin din `node_modules`. Browserul nu știe singur cum să găsească și să combine mii de fișiere mici într-o aplicație coerentă.
-
-</InfoCard>
+<div class="bg-white p-4 rounded shadow-sm border-t-4 border-red-500">
+<h3 class="font-bold mb-2">🛠️ CLI (Command Line Interface)</h3>
+Unealta prin care instalezi aceste pachete în proiectul tău: `npm install react`.
+</div>
 
 </div>
 
-<v-click>
+<div class="mt-8 text-left">
 
-<AdmonitionType type="important" class="mt-6">
-<strong>Transpilation & Bundling:</strong> Avem nevoie de o unealtă care să "traducă" codul nostru modern (JSX, TypeScript) în cod pe care orice browser îl poate înțelege.
+- **`package.json`**: "Lista de dependențe a proiectului tău.
+- **`node_modules/`**: Folderul (adesea uriaș) unde sunt descărcate toate librăriile.
+
+</div>
+
+<AdmonitionType type="note" class="mt-4">
+Există și alternative mai moderne și rapide, precum <strong>pnpm</strong> sau <strong>yarn</strong>, dar toate folosesc același registru de pachete.
 </AdmonitionType>
 
-</v-click>
+---
+layout: top-title-two-cols
+columns: is-5
+color: sky-light
+align: c-lt-lt
+---
+
+:: title ::
+# Anatomia unui Proiect Node.js
+
+:: left ::
+
+<div class="bg-slate-800 text-sky-300 p-6 rounded-lg font-mono text-sm shadow-xl">
+
+**my-app/** <br>
+├── 📁 **node_modules/** <span class="text-slate-500">// Dependențe</span> <br>
+├── 📁 **src/** <span class="text-slate-500">// Codul tău sursă</span> <br>
+│   ├── main.jsx <br>
+│   └── App.jsx <br>
+├── 📁 **public/** <span class="text-slate-500">// Fișiere statice</span> <br>
+├── 📄 .gitignore <br>
+├── 📄 index.html <br>
+├── 📄 **package.json** <br>
+└── 📄 **package-lock.json** <br>
+
+</div>
+
+:: right ::
+
+📜 **package.json** -inima proiectului - conține metadate (nume, versiune), scripturi de rulare și lista de librării instalate (dependențe).
+
+🔒 **package-lock.json** - garantul consistenței - blochează versiunile exacte ale tuturor sub-dependențelor, asigurându-se că proiectul tău rulează la fel pe orice computer.
+
+📦 **node_modules/** - Aici sunt descărcate fizic toate librăriile de care are nevoie proiectul tău. Nu se editează niciodată manual!
+
+🙈 **.gitignore** - filtru pentru Git - spune sistemului de versionare ce fișiere să ignore (de obicei `node_modules`, deoarece sunt prea mari pentru a fi încărcate pe GitHub).
+
+
+<AdmonitionType type="warning">
+<strong>Regulă de aur:</strong> Niciodată nu încărca folderul <code>node_modules</code> pe GitHub! Oricine descarcă proiectul tău îl poate regenera folosind comanda <code>npm install</code> pe baza fișierului <code>package.json</code>.
+</AdmonitionType>
+
+---
+layout: full
+color: sky-light
+---
+
+
+<div class="grid w-full h-fit grid-cols-2 grid-rows-2 mt-15 mb-auto">
+<div class="grid-item grid-col-span-1"><img src="/node_modules_heavy.webp" /></div>
+<div class="grid-item grid-col-span-1"><img src="/node_modules_src.png" /></div>
+</div>
+
+---
+layout: section
+color: sky-light
+---
+
+# Anatomia unui "Build"
+Ce se întâmplă cu codul tău înainte să ajungă în browser?
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: title ::
+# Procesul de Transformare
+
+:: content ::
+
+Codul React modern nu poate fi rulat "așa cum este". El trece printr-o serie de transformări critice:
+
+<div class="grid grid-cols-2 gap-4 mt-6">
+
+<div class="p-4 bg-white rounded border border-sky-200">
+<h4 class="font-bold text-sky-700">1. Transpilare (Babel/SWC)</h4>
+
+Traducerea codului modern (ES6+, JSX, TypeScript) în JavaScript vechi (ES5) pe care îl înțeleg toate browserele.
+</div>
+
+<div class="p-4 bg-white rounded border border-sky-200">
+<h4 class="font-bold text-sky-700">2. Tree Shaking</h4>
+
+Eliminarea codului "mort" (funcții importate dar nefolosite). Ca și cum ai scutura un copac și ar cădea doar frunzele uscate.
+</div>
+
+<div class="p-4 bg-white rounded border border-sky-200">
+<h4 class="font-bold text-sky-700">3. Minificare</h4>
+
+Comprimarea codului prin eliminarea spațiilor, comentariilor și redenumirea variabilelor lungi în litere scurte (ex: `userProfile` devine `a`).
+</div>
+
+<div class="p-4 bg-white rounded border border-sky-200">
+<h4 class="font-bold text-sky-700">4. Bundling</h4>
+
+Combinarea sutelor de fișiere mici în câteva fișiere mari (`bundle.js`) pentru a reduce numărul de cereri HTTP.
+</div>
+
+</div>
 
 ---
 layout: two-cols-title
@@ -459,33 +608,27 @@ color: sky-light
 ---
 
 :: title ::
-# Webpack: Standardul care a definit Dezvoltarea Web
+# Webpack: Standardul care a definit Era
 
 :: left ::
 
-Timp de peste un deceniu, **Webpack** a fost motorul din spatele aproape fiecărei aplicații React (prin *Create React App*).
+Timp de peste un deceniu, **Webpack** a fost motorul principal (ex: *Create React App*).
 
 ### Cum funcționa:
 1. Analiza tot codul sursă.
 2. Construia un grafic de dependențe.
-3. **Bundling:** Comprimă totul într-un singur fișier gigant (`bundle.js`).
-4. Trimitea fișierul către browser.
+3. **Bundling:** Comprimă totul într-un singur fișier înainte de a porni serverul.
 
 :: right ::
 
-### Dezavantajul "Bottleneck"
-Pe măsură ce aplicațiile au devenit complexe:
-- **Pornirea serverului:** Putea dura minute (trebuia să proceseze totul *înainte* de start).
-- Orice schimbare mică declanșa o re-procesare costisitoare.
+### De ce a devenit "lent"?
+Pe măsură ce aplicațiile au crescut:
+- **Timp de pornire:** Trebuia să facă build la *tot* proiectul înainte să poți vedea prima pagină.
+- **HMR (Hot Module Replacement):** Actualizarea codului devenea tot mai lentă pe măsură ce adăugai fișiere.
 
 <div class="mt-4 opacity-70 italic text-sm">
-🐢 "Așteptăm să se termine build-ul..." era o frază comună în workflow-ul de zi cu zi.
+🐢 În proiecte mari, Webpack te lăsa să-ți faci o cafea până pornea serverul.
 </div>
-
----
-layout: cover
----
-![Webpack Bundling](/webpack.png)
 
 ---
 layout: top-title
@@ -494,41 +637,35 @@ color: sky-light
 ---
 
 :: title ::
-# Vite: Paradigma Modernă
+# Vite
 
 :: content ::
 
-**Vite** (cuvântul francez pentru "rapid") a schimbat regulile jocului, profitând de capabilitățile browserelor moderne din 2026.
+**Vite** (franțuzism pentru "rapid") a regândit totul folosind două inovații:
 
-<CardContainer layout="grid-3" gap="20px">
+<CardContainer layout="grid-3" gap="20px" class="mb-6">
 
-<InfoCard title="Start Instant">
+<InfoCard title="Native ESM">
 
-Vite nu face "bundle" în timpul dezvoltării. Folosește **Native ES Modules (ESM)**, permițând browserului să ceară doar fișierele necesare, exact când are nevoie de ele.
-
+Browserul cere doar fișierele de care are nevoie *acum*. Nu mai așteptăm după un bundle gigant.
 </InfoCard>
 
-<InfoCard title="esbuild">
+<InfoCard title="esbuild (Go)">
 
-Partea de "pre-bundling" pentru dependențe este scrisă în **Go** (folosind *esbuild*), fiind de **10-100x** mai rapidă decât orice unealtă bazată pe JS.
-
+Folosește un motor scris în limbajul **Go** pentru pre-procesare, care este de **100x** mai rapid decât uneltele scrise în JS.
 </InfoCard>
 
-<InfoCard title="Zero Lag">
+<InfoCard title="Instant HMR">
 
-Modificările de cod sunt reflectate **instantaneu** prin HMR, indiferent dacă ai 10 fișiere sau 10.000 în proiect.
-
+Când schimbi o linie de cod, doar acel modul este trimis la browser. Refresh-ul este practic instantaneu.
 </InfoCard>
-
 </CardContainer>
 
-<v-click>
 
-<div class="mt-8 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded">
-<strong>De ce este esențial azi?</strong> Vite elimină timpul mort dintre "am scris cod" și "văd rezultatul", transformând experiența de dezvoltare dintr-una frustrantă în una fluidă.
-</div>
 
-</v-click>
+<AdmonitionType type="tip">
+<strong>Verdict 2026:</strong> Webpack rămâne excelent pentru configurații complexe de enterprise, dar pentru orice proiect nou, <strong>Vite</strong> este standardul de aur.
+</AdmonitionType>
 
 ---
 layout: default
@@ -539,25 +676,25 @@ layout: default
 <div class="grid grid-cols-2 gap-10 h-64 items-center">
 
 <div class="text-center">
-  <div class="text-sm font-bold mb-2">Webpack (Legacy)</div>
+  <div class="text-sm font-bold mb-2">Webpack (Bundler-based)</div>
   <div class="p-4 bg-gray-100 rounded border-2 border-dashed border-gray-400">
-    Entry → Resolve → <strong>Transform & Bundle</strong> → Server Ready
+    Entry → <strong>Bundle All</strong> → Server Ready
   </div>
-  <div class="mt-2 text-xs text-orange-600">Procesare liniară, greoaie</div>
+  <div class="mt-2 text-xs text-orange-600">Aștepți build-ul înainte de a vedea ceva</div>
 </div>
 
 <div class="text-center">
-  <div class="text-sm font-bold mb-2">Vite (Modern)</div>
+  <div class="text-sm font-bold mb-2">Vite (ESM-based)</div>
   <div class="p-4 bg-sky-100 rounded border-2 border-sky-400">
-    Server Ready → <strong>Dynamic Imports (on-demand)</strong>
+    Server Ready → <strong>On-demand Request</strong>
   </div>
-  <div class="mt-2 text-xs text-emerald-600">Procesare la cerere, instantă</div>
+  <div class="mt-2 text-xs text-emerald-600">Serverul pornește instant, codul se încarcă la cerere</div>
 </div>
 
 </div>
 
-<AdmonitionType type="tip" class="mt-10">
-În proiectele noastre vom folosi <strong>Vite</strong> pentru a rula aplicațiile React, beneficiind de cea mai rapidă experiență de dezvoltare disponibilă în prezent.
+<AdmonitionType type="important" class="mt-10">
+Vite separă complet mediul de <strong>Development</strong> (ultra-rapid) de cel de <strong>Production</strong> (unde folosește Rollup pentru un build optimizat).
 </AdmonitionType>
 
 ---
@@ -680,9 +817,10 @@ color: sky-light
 
 <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
 
-**Cod Scris:** ~45 linii JavaScript
-
 **Complexitate:**
+
+<div class="ns-c-tight">
+
 - Manipulare manuală DOM
 - `createElement` pentru fiecare element
 - Event listeners individuali
@@ -698,17 +836,19 @@ color: sky-light
 
 </div>
 
+</div>
+
 <div class="space-y-4">
 
 ### React
 
 <div class="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
 
-**Cod Scris:** ~30 linii JavaScript
+<div class="ns-c-tight">
 
 **Simplitate:**
 - Date = UI (declarativ)
-- Un singur `useState`
+- 2 `useState`
 - Fără manipulare DOM
 - Actualizare automată
 
@@ -717,6 +857,8 @@ color: sky-light
 - Ușor de înțeles
 - Mentenabilitate ridicată
 - Scalabil natural
+
+</div>
 
 </div>
 
@@ -803,7 +945,7 @@ color: sky-light
 
 - **Orientat pe Obiecte (bazat pe prototipuri)**: Aproape totul în JavaScript este un obiect. Moștenirea se realizează prin prototipuri, un mecanism flexibil, deși clasele (`class`) introduse în ES6 oferă o sintaxă mai familiară.
 
-- **Funcțiile sunt "First-Class Citizens"**: Funcțiile sunt tratate ca orice altă valoare. Ele pot fi stocate în variabile, pasate ca argumente altor funcții și returnate din alte funcții.
+- **Funcțiile sunt "First-Class Citizens"**: Funcțiile sunt tratate ca orice altă valoare. Ele pot fi stocate în variabile, transmise ca argumente altor funcții și returnate din alte funcții.
 
 </div>
 
@@ -827,7 +969,7 @@ Valorile primitive sunt **imutabile** (nu pot fi modificate direct).
 <div class="ns-c-tight">
 
 -   **`string`**: Pentru text.
--   **`number`**: Pentru numere (întregi sau cu virgulă mobilă).
+-   **`number`**: Pentru numere (întregi sau cu virgulă).
 -   **`boolean`**: `true` sau `false`.
 -   **`null`**: Reprezintă intenționat absența unei valori.
 -   **`undefined`**: O variabilă care a fost declarată, dar nu i s-a atribuit o valoare.
@@ -913,9 +1055,9 @@ color: sky-light
 
 Un `Array` este un obiect global folosit pentru a stoca o listă ordonată de date. Elementele pot fi de orice tip și pot fi accesate printr-un index numeric (începând de la 0).
 
-Arrays-urile în JavaScript vin cu o multitudine de metode extrem de utile, în special cele funcționale care permit scrierea unui cod mai curat și declarativ.
+Array-urile în JavaScript vin cu o multitudine de metode extrem de utile, în special cele funcționale care permit scrierea unui cod mai curat și declarativ.
 
-**Metode esențiale în dezvoltarea cu React/React Native:**
+**Metode esențiale în dezvoltarea cu React:**
 
 <div class="ns-c-tight">
 
@@ -1011,7 +1153,7 @@ const suma = (a, b) => a + b;
 
 <AdmonitionType type="tip">
 
-Funcțiile săgeată (`arrow functions`) sunt extins utilizate în codul modern de React și React Native datorită sintaxei lor scurte și a modului în care gestionează contextul (`this`).
+Funcțiile săgeată (`arrow functions`) sunt extins utilizate în codul modern React datorită sintaxei lor scurte și a modului în care gestionează contextul (`this`).
 
 </AdmonitionType>
 
@@ -1058,7 +1200,7 @@ color: sky-light
 
 :: content ::
 
-Modulele permit împărțirea codului în fișiere separate și reutilizabile. Acest lucru ajută la organizare, mentenanță și evită poluarea scope-ului global. React Native folosește extensiv sistemul de module ES6.
+Modulele permit împărțirea codului în fișiere separate și reutilizabile. Acest lucru ajută la organizare, mentenanță și evită poluarea scope-ului global. React folosește extensiv sistemul de module ES6.
 
 Există două tipuri principale de exporturi:
 
@@ -1110,7 +1252,7 @@ color: sky-light
 ---
 :: title ::
 
-# Bunătăți ES6+ 
+# ES6+ 
 
 :: content ::
 

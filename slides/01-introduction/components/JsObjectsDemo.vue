@@ -1,5 +1,5 @@
 <template>
-<LiveWeb code="const utilizator = {
+  <LiveWeb code="const utilizator = {
   nume: 'Ana',
   varsta: 28,
   esteActiv: true,
@@ -12,12 +12,10 @@
     console.log(`Am ${this.varsta} de ani.`);
   }
 };
-
 // Accesare
-console.log('Nume:', utilizator.nume);
-console.log('Adresa:', utilizator['adresa-livrare']);
-
+console.log(`Nume: ${utilizator.nume}`);
+console.log(`Adresa: ${utilizator['adresa-livrare']}`);
 // Apelare metode
 utilizator.salut();
-utilizator.afiseazaVarsta();" consoleOnly editorHeight="400px" />
+utilizator.afiseazaVarsta();" consoleOnly editorHeight="300px" />
 </template>

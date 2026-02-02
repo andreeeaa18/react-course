@@ -292,7 +292,7 @@ color: sky-light
 
 <AdmonitionType type="tip" class="mt-6">
 
-Pentru a te întoarce la pagina de cursuri de oriunde, poți da click pe componenta de paginare din colțul dreapta-jos.
+Pentru a te întoarce la pagina de cursuri de oriunde, poți da click pe butonul home din colțul stânga-sus.
 
 </AdmonitionType>
 
