@@ -215,6 +215,22 @@ function main() {
   // Step 4: Finalize
   finalizeDeployment();
 
+  // Step 5: Fix SPA routing for GitHub Pages
+  logSection('🔧 Fixing SPA Routing for GitHub Pages');
+  try {
+    const fixScript = path.join(ROOT, 'scripts', 'fix-spa-routing.mjs');
+    execSync(`node "${fixScript}"`, {
+      stdio: 'inherit',
+      cwd: ROOT,
+      env: { ...process.env, BASE_PATH: basePathPrefix }
+    });
+    log('✅ SPA routing fix applied', 'green');
+  } catch (error) {
+    log(`❌ Failed to apply SPA routing fix`, 'red');
+    log(`Error: ${error.message}`, 'red');
+    process.exit(1);
+  }
+
   // Success!
   const duration = ((Date.now() - startTime) / 1000).toFixed(2);
   logSection('✨ Build Complete!');
