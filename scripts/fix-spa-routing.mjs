@@ -97,51 +97,21 @@ function injectRedirectHandler(indexPath, deckName) {
       var redirectPath = sessionStorage.getItem('spa-redirect');
 
       if (redirectPath) {
-        // Clean up
+        // Clean up immediately
         sessionStorage.removeItem('spa-redirect');
 
-        // Wait for Vue/Slidev to be fully initialized before navigating
-        // We need to wait longer to ensure the router is ready
-        var attempts = 0;
-        var maxAttempts = 20; // Try for up to 2 seconds (20 * 100ms)
-
-        function tryNavigate() {
-          attempts++;
-
-          // Check if we're already on the correct path (Vue Router handled it)
-          if (window.location.pathname === redirectPath) {
-            return;
-          }
-
-          // Try to navigate using history API
-          if (window.history && window.history.replaceState) {
+        // Change the URL synchronously BEFORE Slidev initializes
+        // This way Slidev's router will read the correct URL from the start
+        if (window.history && window.history.replaceState) {
+          try {
             window.history.replaceState(null, '', redirectPath);
-
-            // Check if there's a Vue router instance we can trigger
-            if (window.__slidev__ || window.__app__) {
-              // Trigger navigation by changing location
-              // This is more reliable than popstate for Slidev
-              setTimeout(function() {
-                if (window.location.pathname !== redirectPath) {
-                  // If still not on correct path, use direct navigation
-                  window.location.href = redirectPath;
-                }
-              }, 100);
-            } else if (attempts < maxAttempts) {
-              // Vue/Slidev not ready yet, retry
-              setTimeout(tryNavigate, 100);
-            } else {
-              // Last resort: direct navigation
-              window.location.href = redirectPath;
-            }
-          } else {
-            // Fallback: direct navigation
+          } catch (e) {
+            // If replaceState fails, use direct navigation
             window.location.href = redirectPath;
           }
         }
-
-        // Start trying to navigate after initial delay
-        setTimeout(tryNavigate, 200);
+        // Note: We don't need to do anything else - Slidev will read
+        // window.location.pathname when it initializes and show the correct slide
       }
     })();
   </script>
