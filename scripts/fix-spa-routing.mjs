@@ -100,16 +100,48 @@ function injectRedirectHandler(indexPath, deckName) {
         // Clean up
         sessionStorage.removeItem('spa-redirect');
 
-        // Wait for Vue Router to initialize, then navigate to the stored path
-        // This ensures the SPA can handle the navigation properly
-        setTimeout(function() {
-          // Only navigate if the current path doesn't match the redirect path
-          if (window.location.pathname !== redirectPath) {
-            window.history.replaceState(null, '', redirectPath);
-            // Trigger popstate event to notify Vue Router
-            window.dispatchEvent(new PopStateEvent('popstate'));
+        // Wait for Vue/Slidev to be fully initialized before navigating
+        // We need to wait longer to ensure the router is ready
+        var attempts = 0;
+        var maxAttempts = 20; // Try for up to 2 seconds (20 * 100ms)
+
+        function tryNavigate() {
+          attempts++;
+
+          // Check if we're already on the correct path (Vue Router handled it)
+          if (window.location.pathname === redirectPath) {
+            return;
           }
-        }, 50);
+
+          // Try to navigate using history API
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', redirectPath);
+
+            // Check if there's a Vue router instance we can trigger
+            if (window.__slidev__ || window.__app__) {
+              // Trigger navigation by changing location
+              // This is more reliable than popstate for Slidev
+              setTimeout(function() {
+                if (window.location.pathname !== redirectPath) {
+                  // If still not on correct path, use direct navigation
+                  window.location.href = redirectPath;
+                }
+              }, 100);
+            } else if (attempts < maxAttempts) {
+              // Vue/Slidev not ready yet, retry
+              setTimeout(tryNavigate, 100);
+            } else {
+              // Last resort: direct navigation
+              window.location.href = redirectPath;
+            }
+          } else {
+            // Fallback: direct navigation
+            window.location.href = redirectPath;
+          }
+        }
+
+        // Start trying to navigate after initial delay
+        setTimeout(tryNavigate, 200);
       }
     })();
   </script>
