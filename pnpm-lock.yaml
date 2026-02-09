@@ -32,9 +32,9 @@ importers:
 
   slides/00-hub: {}
 
-  slides/01-fundamentals: {}
+  slides/01-introduction: {}
 
-  slides/02-hooks: {}
+  slides/02-react-introduction: {}
 
 packages:
 

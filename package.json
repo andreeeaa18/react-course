@@ -10,9 +10,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "create-module": "node scripts/create-module.mjs",
-    "dev:introduction": "cd slides/01-introduction && slidev slides.md --port 3031",
-    "dev:hooks": "cd slides/02-hooks && slidev slides.md --port 3032",
     "dev:hub": "cd slides/00-hub && slidev slides.md --port 3030",
+    "dev:introduction": "cd slides/01-introduction && slidev slides.md --port 3031",
+    "dev:react-introduction": "cd slides/02-react-introduction && slidev slides.md --port 3032",
     "preview": "npx serve dist"
   },
   "dependencies": {

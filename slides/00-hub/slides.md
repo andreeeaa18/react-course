@@ -42,10 +42,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="02-react-introduction"
+  icon="⚛️"
+  title="02: React Introduction"
+  description="JSX & Componente"
 />
 
 <ModuleCard

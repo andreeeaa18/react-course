@@ -138,19 +138,25 @@ fs.writeFileSync(path.join(modulePath, 'setup/main.ts'), setupMain);
 // Capitalize simple name for title
 const title = simpleName.charAt(0).toUpperCase() + simpleName.slice(1);
 const slidesContent = `---
+title: 'React Course'
 theme: neversink
-highlighter: shiki
-lineNumbers: true
-drawings:
-  persist: false
 transition: slide-left
-css: unocss
-title: ${title}
+layout: cover
+color: sky-light
+info: 'React Course · Crudu Cristian · 2026'
+lineNumbers: true
+draw:
+  enabled: true
+favicon: './react.svg'
 ---
 
-# ${title}
+## ${title}
 
-New module created!
+New module - ready to customize!
+
+<div class="absolute top-2 right-2 w-8 h-8">
+<GithubLink repo="https://github.com/cristi-usm/react-course" />
+</div>
 `;
 fs.writeFileSync(path.join(modulePath, 'slides.md'), slidesContent);
 
