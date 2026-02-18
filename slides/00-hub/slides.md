@@ -50,16 +50,16 @@ color: sky-light
 
 <ModuleCard
   module="03-props-and-rendering"
-  icon="🧱"
+  icon="📥"
   title="03: Props & Rendering"
   description="Props și randarea componentelor"
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="04-event-handling"
+  icon="🖱️"
+  title="04: Gestionarea Evenimentelor"
+  description="Gestionarea evenimentelor în React"
 />
 
 <ModuleCard

@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "create-module": "node scripts/create-module.mjs",
+    "dev:event-handling": "cd slides/04-event-handling && slidev slides.md --port 3034",
     "dev:hub": "cd slides/00-hub && slidev slides.md --port 3030",
     "dev:introduction": "cd slides/01-introduction && slidev slides.md --port 3031",
     "dev:props-and-rendering": "cd slides/03-props-and-rendering && slidev slides.md --port 3033",

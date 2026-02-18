@@ -26,6 +26,7 @@ const modules = [
   '01-introduction',
   '02-react-introduction',
   '03-props-and-rendering',
+  '04-event-handling',
 ]
 
 // Determine completion status
@@ -46,6 +47,7 @@ const devPorts = {
   '01-introduction': 3031,
   '02-react-introduction': 3032,
   '03-props-and-rendering': 3033,
+  '04-event-handling': 3034,
 }
 
 // Detect environment
