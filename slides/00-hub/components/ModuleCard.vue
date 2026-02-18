@@ -25,6 +25,7 @@ const props = defineProps({
 const modules = [
   '01-introduction',
   '02-react-introduction',
+  '03-props-and-rendering',
 ]
 
 // Determine completion status
@@ -44,6 +45,7 @@ const isCompleted = computed(() => {
 const devPorts = {
   '01-introduction': 3031,
   '02-react-introduction': 3032,
+  '03-props-and-rendering': 3033,
 }
 
 // Detect environment

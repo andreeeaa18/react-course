@@ -49,10 +49,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="03-props-and-rendering"
+  icon="🧱"
+  title="03: Props & Rendering"
+  description="Props și randarea componentelor"
 />
 
 <ModuleCard
