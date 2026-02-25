@@ -15,6 +15,7 @@
     "dev:introduction": "cd slides/01-introduction && slidev slides.md --port 3031",
     "dev:props-and-rendering": "cd slides/03-props-and-rendering && slidev slides.md --port 3033",
     "dev:react-introduction": "cd slides/02-react-introduction && slidev slides.md --port 3032",
+    "dev:state": "cd slides/05-state && slidev slides.md --port 3035",
     "preview": "npx serve dist"
   },
   "dependencies": {

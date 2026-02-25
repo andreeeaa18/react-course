@@ -63,10 +63,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="05-state"
+  icon="🧠"
+  title="05: State"
+  description="Gestionarea stării în React"
 />
 
 <ModuleCard
