@@ -70,17 +70,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
-/>
-
-<ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="06-handling-state"
+  icon="💡"
+  title="06: Gestionarea State-ului"
+  description="Structurarea, partajarea și păstrarea state-ului"
 />
 
 <ModuleCard

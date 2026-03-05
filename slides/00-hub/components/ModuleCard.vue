@@ -28,6 +28,7 @@ const modules = [
   '03-props-and-rendering',
   '04-event-handling',
   '05-state',
+  '06-handling-state'
 ]
 
 // Determine completion status
@@ -50,6 +51,7 @@ const devPorts = {
   '03-props-and-rendering': 3033,
   '04-event-handling': 3034,
   '05-state': 3035,
+  '06-handling-state': 3036
 }
 
 // Detect environment

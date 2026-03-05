@@ -38,6 +38,12 @@ importers:
 
   slides/03-props-and-rendering: {}
 
+  slides/04-event-handling: {}
+
+  slides/05-state: {}
+
+  slides/06-handling-state: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
