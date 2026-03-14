@@ -44,6 +44,8 @@ importers:
 
   slides/06-handling-state: {}
 
+  slides/07-reducer-and-context: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':

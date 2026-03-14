@@ -77,9 +77,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
+  module="07-reducer-and-context"
+  icon="♻️"
+  title="07: Reducer & Context"
+  description="Gestionarea stării complexe cu useReducer și Context API"
   disabled
 />
 
