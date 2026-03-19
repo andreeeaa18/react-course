@@ -1,5 +1,12 @@
 /* Common theme styles for the React course */
 
+/* Fix Slidev navigation controls color for light theme.
+   Slidev hardcodes --slidev-controls-foreground: white in its vars.css,
+   which is invisible on light backgrounds. */
+html:not(.dark) {
+  --slidev-controls-foreground: #1e293b;
+}
+
 /* Custom slide layouts */
 .slidev-layout {
   padding: 2rem;
