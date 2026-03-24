@@ -29,7 +29,8 @@ const modules = [
   '04-event-handling',
   '05-state',
   '06-handling-state',
-  '07-reducer-and-context'
+  '07-reducer-and-context',
+  '08-refs-and-effects'
 ]
 
 // Determine completion status
@@ -53,7 +54,8 @@ const devPorts = {
   '04-event-handling': 3034,
   '05-state': 3035,
   '06-handling-state': 3036,
-  '07-reducer-and-context': 3037
+  '07-reducer-and-context': 3037,
+  '08-refs-and-effects': 3038
 }
 
 // Detect environment

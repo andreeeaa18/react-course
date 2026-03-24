@@ -85,10 +85,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
-  disabled
+  module="08-refs-and-effects"
+  icon="🌊"
+  title="08: Refs & Effects"
+  description="Refs și efecte secundare"
 />
 
 <ModuleCard

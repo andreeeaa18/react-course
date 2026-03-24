@@ -46,6 +46,8 @@ importers:
 
   slides/07-reducer-and-context: {}
 
+  slides/08-refs-and-effects: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
