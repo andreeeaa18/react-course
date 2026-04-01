@@ -48,6 +48,8 @@ importers:
 
   slides/08-refs-and-effects: {}
 
+  slides/09-fetching: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':

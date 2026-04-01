@@ -92,9 +92,10 @@ color: sky-light
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
+  module="09-fetching"
+  icon="📡"
+  title="09: Fetching"
+  description="Comunicarea cu backend-ul: Fetch API și HTTP în React"
   disabled
 />
 
