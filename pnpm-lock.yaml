@@ -50,6 +50,8 @@ importers:
 
   slides/09-fetching: {}
 
+  slides/10-performance: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':

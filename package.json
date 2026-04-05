@@ -15,6 +15,7 @@
     "dev:handling-state": "cd slides/06-handling-state && slidev slides.md --port 3036",
     "dev:hub": "cd slides/00-hub && slidev slides.md --port 3030",
     "dev:introduction": "cd slides/01-introduction && slidev slides.md --port 3031",
+    "dev:performance": "cd slides/10-performance && slidev slides.md --port 3040",
     "dev:props-and-rendering": "cd slides/03-props-and-rendering && slidev slides.md --port 3033",
     "dev:react-introduction": "cd slides/02-react-introduction && slidev slides.md --port 3032",
     "dev:reducer-and-context": "cd slides/07-reducer-and-context && slidev slides.md --port 3037",

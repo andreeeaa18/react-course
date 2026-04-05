@@ -96,13 +96,13 @@ color: sky-light
   icon="📡"
   title="09: Fetching"
   description="Comunicarea cu backend-ul: Fetch API și HTTP în React"
-  disabled
 />
 
 <ModuleCard
-  icon="❓"
-  title="În curând"
-  description="În curând"
+  module="10-performance"
+  icon="⚡"
+  title="10: Performanță"
+  description="Optimizarea randării: memo, useMemo, useCallback și React Compiler"
   disabled
 />
 

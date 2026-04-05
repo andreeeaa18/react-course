@@ -31,7 +31,8 @@ const modules = [
   '06-handling-state',
   '07-reducer-and-context',
   '08-refs-and-effects',
-  '09-fetching'
+  '09-fetching',
+  '10-performance',
 ]
 
 // Determine completion status
@@ -57,7 +58,8 @@ const devPorts = {
   '06-handling-state': 3036,
   '07-reducer-and-context': 3037,
   '08-refs-and-effects': 3038,
-  '09-fetching': 3039
+  '09-fetching': 3039,
+  '10-performance': 3040,
 }
 
 // Detect environment
