@@ -193,7 +193,7 @@ color: sky-light
 
 <div class="bg-sky-50 border-2 border-sky-300 rounded-xl p-4">
   <div class="font-bold text-sky-800 text-base mb-2">1. setState / dispatch</div>
-  <p>Când apelezi <code>setState</code> sau <code>dispatch</code>, componentul respectiv se re-renderează.</p>
+  <p>Când apelezi <code>setState</code> sau <code>dispatch</code>, componentul respectiv se re-randează.</p>
 
 ```jsx
 const [count, setCount] = useState(0);
@@ -204,14 +204,14 @@ setCount(count + 1);
 </div>
 
 <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-4">
-  <div class="font-bold text-amber-800 text-base mb-2">2. Părintele se re-renderează</div>
-  <p>Când un părinte se re-renderează, <strong>TOȚI copiii</strong> se re-renderează — indiferent de props!</p>
+  <div class="font-bold text-amber-800 text-base mb-2">2. Părintele se re-randează</div>
+  <p>Când un părinte se re-randează, <strong>TOȚI copiii</strong> se re-randează — indiferent de props!</p>
 
 ```jsx
 function Parent() {
   const [x, setX] = useState(0);
   // Când x se schimbă:
-  return <Child />; // se re-renderează!
+  return <Child />; // se re-randează!
 }
 ```
 
@@ -219,11 +219,11 @@ function Parent() {
 
 <div class="bg-rose-50 border-2 border-rose-300 rounded-xl p-4">
   <div class="font-bold text-rose-800 text-base mb-2">3. Context se schimbă</div>
-  <p>Când valoarea unui <code>Context</code> se schimbă, toți consumatorii se re-renderează.</p>
+  <p>Când valoarea unui <code>Context</code> se schimbă, toți consumatorii se re-randează.</p>
 
 ```jsx
 // Toți useContext(ThemeCtx)
-// se re-renderează când
+// se re-randează când
 // valoarea ThemeCtx se schimbă
 ```
 
@@ -233,8 +233,8 @@ function Parent() {
 
 <AdmonitionType type="warning">
 
-**Mit**: „React re-renderează doar componentele ale căror props s-au schimbat" — **FALS!** 
-<br/>React re-renderează **TOȚI copiii** unui component re-randat, chiar dacă props sunt identice.
+**Mit**: „React re-randează doar componentele ale căror props s-au schimbat" — **FALS!** 
+<br/>React re-randează **TOȚI copiii** unui component re-randat, chiar dacă props sunt identice.
 
 </AdmonitionType>
 
@@ -254,12 +254,12 @@ color: sky-light
 
 <div class="space-y-4">
 
-Când `App` se re-renderează, **întregul arbore** este afectat:
+Când `App` se re-randează, **întregul arbore** este afectat:
 
-1. `App` apelează `setState` → se re-renderează
-2. `Sidebar` și `Main` sunt copii → se re-renderează
-3. `List` este copilul lui `Main` → se re-renderează
-4. Fiecare `Item` (×100) → se re-renderează
+1. `App` apelează `setState` → se re-randează
+2. `Sidebar` și `Main` sunt copii → se re-randează
+3. `List` este copilul lui `Main` → se re-randează
+4. Fiecare `Item` (×100) → se re-randează
 
 **Rezultat**: 103 componente re-randate pentru o singură schimbare de state!
 
@@ -338,7 +338,7 @@ color: sky-light
 
 ### **ESTE** o problemă când:
 - Un component face **calcule costisitoare** la fiecare render
-- **Sute/mii** de componente se re-renderează inutil
+- **Sute/mii** de componente se re-randează inutil
 - Re-render-urile sunt **frecvente** (typing, drag, scroll)
 
 </div>
@@ -408,7 +408,7 @@ color: sky-light
 
 **"Highlight updates when components render"**
 
-Activează această opțiune pentru a vedea **vizual** care componente se re-renderează (contur verde/galben în jurul lor).
+Activează această opțiune pentru a vedea **vizual** care componente se re-randează (contur verde/galben în jurul lor).
 
 </div>
 
@@ -533,7 +533,7 @@ margin: tight
 
 :: content ::
 
-Scrie rapid în input — lista de 200 de produse se re-renderează la **fiecare tastă**, deși nu depinde de text!
+Scrie rapid în input — lista de 200 de produse se re-randează la **fiecare tastă**, deși nu depinde de text!
 
 <SlowListBadDemo />
 
@@ -569,8 +569,8 @@ Iată ce se întâmplă la **fiecare tastă**:
 
 ### ❌ Problema
 
-- `App` se re-renderează (din cauza `setText`)
-- `ExpensiveList` este copilul lui `App` → se re-renderează **automat**
+- `App` se re-randează (din cauza `setText`)
+- `ExpensiveList` este copilul lui `App` → se re-randează **automat**
 - Fiecare `Item` face un calcul costisitor
 - **Nimic** din listă nu s-a schimbat — degeaba am calculat!
 
@@ -606,17 +606,17 @@ color: sky-light
 
 <div class="space-y-4">
 
-`React.memo` învelește un component și îi spune lui React: **"Compară props — dacă nu s-au schimbat, sări peste re-render."**
+`React.memo` învelește un component și îi spune lui React: **"Compară props — dacă nu s-au schimbat, sari peste re-render."**
 
 ```jsx
 import { memo } from 'react';
 
-// Fără memo: se re-renderează la FIECARE render al părintelui
+// Fără memo: se re-randează la FIECARE render al părintelui
 function ExpensiveList({ items }) {
   return items.map(item => /* ... */);
 }
 
-// Cu memo: se re-renderează DOAR dacă items se schimbă
+// Cu memo: se re-randează DOAR dacă items se schimbă
 const ExpensiveList = memo(function ExpensiveList({ items }) {
   return items.map(item => /* ... */);
 });
@@ -683,7 +683,7 @@ color: sky-light
 
 ### ✅ Folosește memo când:
 
-- Componentul se re-renderează **des** cu **aceleași props**
+- Componentul se re-randează **des** cu **aceleași props**
 - Randarea componentului este **costisitoare** (calcule, liste mari)
 - Componentul este **adânc** în arborele de componente
 
@@ -913,7 +913,7 @@ function App() {
 }
 
 const Chart = memo(function Chart({ config }) {
-  // Se re-renderează MEREU
+  // Se re-randează MEREU
   // config nou !== config vechi (referință!)
 });
 ```
@@ -939,7 +939,7 @@ function App() {
 }
 
 const Chart = memo(function Chart({ config }) {
-  // Se re-renderează DOAR dacă config se schimbă
+  // Se re-randează DOAR dacă config se schimbă
 });
 ```
 
@@ -970,7 +970,7 @@ color: sky-light
 
 :: content ::
 
-`TodoList` este învelit în `React.memo` — dar se re-renderează la fiecare click pe **+1**! De ce?
+`TodoList` este învelit în `React.memo` — dar se re-randează la fiecare click pe **+1**! De ce?
 
 <CallbackBadDemo />
 
@@ -1211,7 +1211,7 @@ color: sky-light
 
 <div class="text-sm mb-3">
 
-Când transmiți componente ca `children`, ele sunt **create de părinte** — nu de wrapper. Scroll-ează și observă: `ScrollTracker` se re-renderează des, dar `HeavyContent` rămâne la **1 randare**!
+Când transmiți componente ca `children`, ele sunt **create de părinte** — nu de wrapper. Scroll-ează și observă: `ScrollTracker` se re-randează des, dar `HeavyContent` rămâne la **1 randare**!
 
 </div>
 
@@ -1905,7 +1905,7 @@ color: sky-light
 <div class="space-y-3">
 
 ### Fundamente
-- React re-renderează **toți copiii** unui component re-randat
+- React re-randează **toți copiii** unui component re-randat
 - **Re-render ≠ DOM update** — faza de render e separată de commit
 - **Măsoară mai întâi** cu React DevTools Profiler!
 
@@ -1921,7 +1921,7 @@ color: sky-light
 
 ### Pattern-uri structurale
 - **State jos** — mută state-ul aproape de unde e folosit
-- **Children ca props** — copiii nu se re-renderează cu wrapper-ul
+- **Children ca props** — copiii nu se re-randează cu wrapper-ul
 - **Virtualizare** — randează doar ce e vizibil
 - **`useDeferredValue`** — amână valori non-urgente
 - **`useTransition`** — marchează state updates ca non-urgente
