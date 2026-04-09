@@ -723,6 +723,61 @@ const ProductList = memo(function ProductList({ products }) {
 
 
 ---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: title ::
+# React.memo — comparație personalizată
+
+:: content ::
+
+Implicit, `memo` compară fiecare prop cu `Object.is` (comparație superficială). Poți furniza o funcție personalizată ca **al doilea argument**.
+
+<div class="grid grid-cols-2 gap-6 mt-2">
+
+<div class="bg-sky-50 border-2 border-sky-200 rounded-xl p-4">
+
+### Sintaxa
+
+```jsx
+const MyComponent = memo(Component, areEqual);
+
+function areEqual(prevProps, nextProps) {
+  // returnează true  → sare peste re-render
+  // returnează false → se re-randează
+}
+```
+
+</div>
+
+<div class="bg-green-50 border-2 border-green-200 rounded-xl p-4">
+
+### Exemplu: ignoră câmpuri irelevante
+
+```jsx
+const Chart = memo(function Chart({ data, theme }) {
+  return <canvas>{/* ... */}</canvas>;
+}, (prev, next) => {
+  // Re-randează DOAR dacă data se schimbă
+  // Ignoră schimbările de theme
+  return prev.data === next.data;
+});
+```
+
+</div>
+
+</div>
+
+<AdmonitionType type="caution">
+
+**Atenție la convenție:** funcția returnează `true` când props sunt **egale** (sari peste render). `useMemo` și `useCallback` nu au această opțiune — ele folosesc întotdeauna `Object.is`.
+
+</AdmonitionType>
+
+
+---
 layout: section
 color: sky-light
 ---
@@ -1357,6 +1412,22 @@ color: sky-light
 </div>
 
 
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: title ::
+# Demo: useDeferredValue
+
+:: content ::
+
+Scrie rapid în câmpul de căutare. Observă cum **input-ul se actualizează instant**, iar lista (5000 produse) urmează cu un mic decalaj — valorile `Input` și `Deferred` devin diferite în acel moment.
+
+<UseDeferredValueDemo />
+
 ---
 layout: top-title
 align: c
@@ -1439,6 +1510,22 @@ const [isPending, startTransition] = useTransition();
 
 </div>
 
+
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: title ::
+# Demo: useTransition
+
+:: content ::
+
+Apasă pe tab-uri și observă cum **butonul reacționează instant** (arată ⏳), iar lista de 300 produse se încarcă în fundal fără să blocheze interfața.
+
+<UseTransitionDemo />
 
 ---
 layout: section
@@ -1685,7 +1772,7 @@ margin: tight
 
 :: content ::
 
-**✍️ Cod scris manual** — cu `memo`, `useMemo`, `useCallback`:
+**Cod scris manual** — cu `memo`, `useMemo`, `useCallback`:
 
 ```jsx
 import { useState, useMemo, useCallback, memo } from 'react';
@@ -1724,7 +1811,7 @@ margin: tight
 
 :: content ::
 
-**🤖 Același cod, fără `memo` / `useMemo` / `useCallback`** — compilatorul le adaugă automat:
+**Același cod, fără `memo` / `useMemo` / `useCallback`** — compilatorul le adaugă automat:
 
 ```jsx
 import { useState } from 'react';
@@ -1900,7 +1987,7 @@ color: sky-light
 
 :: content ::
 
-<div class="grid grid-cols-2 gap-6 text-sm">
+<div class="grid grid-cols-2 gap-6 text-sm ns-c-tight">
 
 <div class="space-y-3">
 
