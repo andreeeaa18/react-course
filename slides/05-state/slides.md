@@ -1,30 +1,29 @@
 ---
-title: 'React Course'
+title: "React Course"
 theme: neversink
 transition: slide-left
 layout: cover
 color: sky-light
-info: 'React Course · Crudu Cristian · 2026'
+info: "React Course · Crudu Cristian · 2026"
 lineNumbers: true
 draw:
   enabled: true
-favicon: './react.svg'
+favicon: "./react.svg"
 ---
-
 # State
+
 Memoria componentelor
 
 <div class="absolute top-2 right-2 w-8 h-8">
 <GithubLink repo="https://github.com/cristi-usm/react-course" />
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Ce este State?
 
 :: content ::
@@ -46,14 +45,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # De ce nu funcționează variabilele normale?
 
 :: content ::
@@ -73,14 +71,13 @@ color: sky-light
 - UI-ul rămâne neschimbat, chiar dacă variabila s-a modificat
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Variabilă Obișnuită
 
 :: content ::
@@ -91,20 +88,18 @@ Să vedem aceste probleme în acțiune - încearcă să apeși butonul:
 
 <BrokenLikeButton />
 
-
 <AdmonitionType type="caution" class="mt-4">
 
 Valoarea se schimbă în consolă (vezi!), dar UI-ul nu se actualizează
 
 </AdmonitionType>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Hook-ul `useState`
 
 :: content ::
@@ -114,14 +109,13 @@ Hook-ul <code>useState</code> ne oferă o <strong>variabilă care persistă</str
 </div>
 
 <WorkingLikeButton />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Ce este un Hook?
 
 :: content ::
@@ -149,14 +143,13 @@ Hook-urile pot fi apelate **DOAR** la nivel superior al componentului — nu în
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Anatomia `useState`
 
 :: content ::
@@ -164,7 +157,7 @@ color: sky-light
 <div class="text-lg space-y-6">
 
 ```jsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -197,14 +190,13 @@ function Counter() {
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Cum știe React ce state să returneze?
 
 :: content ::
@@ -215,9 +207,9 @@ React identifică state-urile după **ordinea apelurilor** `useState`, nu după 
 
 ```jsx
 function Component() {
-  const [name, setName] = useState('Ana');      // Primul useState -> State #0
-  const [age, setAge] = useState(25);           // Al doilea useState -> State #1
-  const [city, setCity] = useState('București'); // Al treilea useState -> State #2
+  const [name, setName] = useState("Ana"); // Primul useState -> State #0
+  const [age, setAge] = useState(25); // Al doilea useState -> State #1
+  const [city, setCity] = useState("București"); // Al treilea useState -> State #2
 }
 ```
 
@@ -236,14 +228,13 @@ function Component() {
 </div>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # State-uri Multiple
 
 :: content ::
@@ -253,14 +244,13 @@ Poți avea oricâte state-uri vrei într-un component - fiecare independent:
 </div>
 
 <MultipleStates />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # State este Izolat și Privat
 
 :: content ::
@@ -272,15 +262,14 @@ Fiecare instanță a unui component are propriul său state, complet separat:
 <IsolatedState />
 
 </div>
-
 ---
 layout: section
 color: sky-light
 ---
 
-# Render și Commit
+# Parametri
 
-Procesul prin care React actualizează interfața
+Ce parametri ia useState
 
 ---
 layout: top-title
@@ -289,6 +278,177 @@ color: sky-light
 ---
 
 :: title ::
+
+# Parametri de tip primitiv
+
+:: content ::
+
+<div class="text-lg space-y-6 ns-c-tight">
+
+useState poate lua ca **parametri**:
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div class="p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border-2 border-green-500">
+<div class="text-2xl mb-3">Strings</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;&quot;hello&quot;&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-blue-500">
+<div class="text-2xl mb-3">Numbers</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;23&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-red-500">
+<div class="text-2xl mb-3">Booleans</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;false&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-yellow-500">
+<div class="text-2xl mb-3">Null or Undefined</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;null&#41;</code>
+</div>
+</div>
+
+</div>
+
+</div>
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: title ::
+
+# Parametri de tip complex
+
+:: content ::
+
+<div class="text-lg space-y-6 ns-c-tight">
+
+useState poate lua ca **parametri**:
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div class="p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border-2 border-green-500">
+<div class="text-2xl mb-3">Arrays</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;[]&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-red-500">
+<div class="text-2xl mb-3">Objects</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;{ name: "John", age: 30 }&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-blue-500">
+<div class="text-2xl mb-3">Sets and Maps</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;new Set()&#41;</code>
+</div>
+</div>
+
+<div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-2 border-yellow-500">
+<div class="text-2xl mb-3">Functions</div>
+<div class="text-sm mt-3 opacity-75">
+<code>useState&#40;() => getFeedback()&#41;</code>
+</div>
+</div>
+
+</div>
+
+</div>
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: content ::
+
+<div class="text-lg space-y-6 ns-c-tight">
+
+Diferența dintre **useState(getFeedback())** și **useState(() => getFeedback())**:
+
+<div class="text-lg space-y-6">
+
+<div class="grid grid-cols-2 gap-6">
+
+<div class="p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
+<div class="font-bold text-xl mb-3">useState(getFeedback()) — Apel Direct (Ineficient)</div>
+<div class="text-sm space-y-2">
+<div>În acest caz, funcția getFeedback() este executată la fiecare randare a componentei tale.</div>
+<div>• Prima randare: React apelează getFeedback(), folosește rezultatul pentru a seta starea inițială. (Corect)</div>
+<div>• Randările următoare: Deși React are deja valoarea stării și ignoră rezultatul lui getFeedback(), funcția tot este apelată inutil de JavaScript înainte de a intra în hook-ul useState.</div>
+<div>• Problema: Dacă getFeedback() face calcule grele sau citește din localStorage, vei încetini aplicația la fiecare click sau schimbare de stare.</div>
+</div>
+</div>
+
+<div class="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border-l-4 border-purple-500">
+<div class="font-bold text-xl mb-3">useState(() => getFeedback()) — Inițializare Leneșă (Eficient)</div>
+<div class="text-sm space-y-2">
+<div>Aceasta se numește <strong>Lazy Initialization</strong>.</div>
+<div>• Prima randare: React execută funcția anonimă și salvează rezultatul.</div>
+<div>• Randările următoare: React nu mai execută funcția deloc. Știe că are deja starea inițializată și sare peste acel bloc de cod.</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: top-title
+align: c
+color: sky-light
+---
+
+:: content ::
+
+<AdmonitionType type="info">
+
+**Regula de aur:**
+<div>• Folosește useState(valoare) pentru valori simple (string, număr, boolean).</div>
+<p></p>
+<div>• Folosește useState(() => getFeedback()) dacă inițializarea implică:</div>
+<p></p>
+  <div> ▫ localStorage.getItem() sau sessionStorage.</div>
+  <p></p>
+  <div>▫ Mapări sau filtrări pe liste mari de date.</div>
+  <p></p>
+  <div>▫ Calcule matematice complexe.</div>
+
+</AdmonitionType>
+
+---
+layout: section
+color: sky-light
+---
+# Render și Commit
+
+Procesul prin care React actualizează interfața
+---
+layout: top-title
+align: c
+color: sky-light
+---
+:: title ::
+
 # Cele 3 Etape ale React
 
 :: content ::
@@ -320,14 +480,13 @@ De la schimbarea state-ului până la afișarea pe ecran, React urmează **3 pa�
 </div>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Pas 1: Trigger (Declanșare)
 
 :: content ::
@@ -363,14 +522,13 @@ Când apeși pe un buton care apelează `setCount`, React pune în coadă un nou
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Pas 2: Render (Randare)
 
 :: content ::
@@ -408,14 +566,13 @@ Procesul este **recursiv**: dacă o componentă returnează alte componente, Rea
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Rendering-ul Trebuie Să Fie Pur
 
 :: content ::
@@ -453,14 +610,13 @@ Componentele **trebuie să fie funcții pure** în timpul rendering-ului:
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Pas 3: Commit (Aplicare)
 
 :: content ::
@@ -490,14 +646,13 @@ După rendering, React **aplică modificările în DOM**:
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Actualizări Selective
 
 :: content ::
@@ -513,14 +668,13 @@ Observă cum doar timpul se actualizează, nu și input-ul (chiar dacă totul se
 React re-renderizează **toată** componenta, dar actualizează în DOM **doar** elementele care s-au schimbat
 
 </AdmonitionType>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Recap: Render vs Commit
 
 :: content ::
@@ -558,14 +712,13 @@ După commit, **browser-ul redesenează** (browser painting) pentru a afișa mod
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Rendering produce un Snapshot
 
 :: content ::
@@ -600,14 +753,13 @@ Când React **re-renderizează** un component, el:
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Variabilele sunt "înghețate" în Render
 
 :: content ::
@@ -620,10 +772,12 @@ export default function Counter() {
   //        ↑ "number" este ÎNGHEȚAT la valoarea din acest render
 
   return (
-    <button onClick={() => {
-      setNumber(number + 5); // Programează un re-render cu valoarea 5
-      alert(number);         // Afișează VALOAREA DIN SNAPSHOT (0), nu 5!
-    }}>
+    <button
+      onClick={() => {
+        setNumber(number + 5); // Programează un re-render cu valoarea 5
+        alert(number); // Afișează VALOAREA DIN SNAPSHOT (0), nu 5!
+      }}
+    >
       +5
     </button>
   );
@@ -632,19 +786,18 @@ export default function Counter() {
 
 <AdmonitionType type="important" class="mt-4">
 
-`setNumber` nu modifică `number` în render-ul curent. El spune React: *"la următorul render, number va fi 5"*
+`setNumber` nu modifică `number` în render-ul curent. El spune React: _"la următorul render, number va fi 5"_
 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Valoarea din Snapshot
 
 :: content ::
@@ -654,14 +807,13 @@ Apasă butonul și observă ce valoare afișează alert-ul față de titlul din 
 </div>
 
 <SnapshotAlertDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Problema celor 3 Incrementări
 
 :: content ::
@@ -671,14 +823,13 @@ Butonul zice "+3" — cu câte unități incrementează de fapt?
 </div>
 
 <ThreeClicksDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # De ce "+3" Devine "+1"?
 
 :: content ::
@@ -718,14 +869,13 @@ Rezultat: React primește **3 instrucțiuni identice** → aplică ultima → in
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # State și Codul Asincron
 
 :: content ::
@@ -741,14 +891,13 @@ Apasă rapid de mai multe ori, apoi observă valorile din alert-uri:
 Fiecare apăsare creează un **snapshot separat** — alert-urile afișează valorile din momentul apăsării, nu din momentul afișării
 
 </AdmonitionType>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Exemplu Real: Formular cu Întârziere
 
 :: content ::
@@ -758,14 +907,13 @@ Trimite un mesaj, apoi <strong>schimbă destinatarul</strong> înainte ca alert-
 </div>
 
 <ChatFormDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Recap: State ca un Snapshot
 
 :: content ::
@@ -803,21 +951,18 @@ color: sky-light
 </AdmonitionType>
 
 </div>
-
 ---
 layout: section
 color: sky-light
 ---
-
 # Cum să faci mai multe actualizări într-un singur render?
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Batching — React Grupează Actualizările
 
 :: content ::
@@ -855,14 +1000,13 @@ React **nu re-renderizează** după fiecare apel `setState`. El grupează toate 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Funcții de Actualizare — Soluția Corectă
 
 :: content ::
@@ -889,9 +1033,9 @@ setCount(count + 1); // count = 0 → 1
 <div class="font-bold mb-3">✅ Funcție updater (coadă)</div>
 
 ```jsx
-setCount(c => c + 1); // 0 → 1
-setCount(c => c + 1); // 1 → 2
-setCount(c => c + 1); // 2 → 3
+setCount((c) => c + 1); // 0 → 1
+setCount((c) => c + 1); // 1 → 2
+setCount((c) => c + 1); // 2 → 3
 // Rezultat final: 3
 ```
 
@@ -901,19 +1045,18 @@ setCount(c => c + 1); // 2 → 3
 
 <AdmonitionType type="important">
 
-**Funcția updater** primește starea *cea mai recent programată* din coadă, nu valoarea din snapshot
+**Funcția updater** primește starea _cea mai recent programată_ din coadă, nu valoarea din snapshot
 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Snapshot vs Updater
 
 :: content ::
@@ -921,14 +1064,13 @@ color: sky-light
 <div class="text-base mb-3">Ambele butoane zic "+3" — apasă-le și compară rezultatele:</div>
 
 <UpdaterCompareDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Cum Procesează React Coada
 
 :: content ::
@@ -939,18 +1081,18 @@ React procesează coada de updater-uri **secvențial**, fiecare primind rezultat
 
 ```jsx
 // State inițial: count = 0
-setCount(c => c + 1); // Adăugat în coadă
-setCount(c => c + 1); // Adăugat în coadă
-setCount(c => c + 1); // Adăugat în coadă
+setCount((c) => c + 1); // Adăugat în coadă
+setCount((c) => c + 1); // Adăugat în coadă
+setCount((c) => c + 1); // Adăugat în coadă
 ```
 
 <div class="mt-2 overflow-x-auto">
 
 | Updater în coadă | Valoare intrare | Returnează |
-|:---|:---:|:---:|
-| `c => c + 1` | `0` | `1` |
-| `c => c + 1` | `1` | `2` |
-| `c => c + 1` | `2` | **`3`** ✅ |
+| :--------------- | :-------------: | :--------: |
+| `c => c + 1`     |       `0`       |    `1`     |
+| `c => c + 1`     |       `1`       |    `2`     |
+| `c => c + 1`     |       `2`       | **`3`** ✅ |
 
 </div>
 
@@ -961,14 +1103,13 @@ React stochează `3` ca state pentru următorul render și apelează componenta 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Valori Directe vs Funcții Updater
 
 :: content ::
@@ -980,22 +1121,22 @@ Poți **combina** cele două stiluri — valoarea directă **înlocuiește** coa
 ```jsx
 // State inițial: count = 0
 setCount(count + 5); // Înlocuiește: "pune 5 în coadă"
-setCount(c => c + 1); // Updater: citește 5 din coadă → returnează 6
+setCount((c) => c + 1); // Updater: citește 5 din coadă → returnează 6
 ```
 
 <div class="mt-2 overflow-x-auto">
 
 | Actualizare în coadă | Valoare intrare | Returnează |
-|:---|:---:|:---:|
-| `"înlocuiește cu 5"` | `0` (ignorat) | `5` |
-| `c => c + 1` | `5` | **`6`** ✅ |
+| :------------------- | :-------------: | :--------: |
+| `"înlocuiește cu 5"` |  `0` (ignorat)  |    `5`     |
+| `c => c + 1`         |       `5`       | **`6`** ✅ |
 
 </div>
 
 ```jsx
 setCount(count + 5); // → 5
-setCount(c => c + 1); // → 6
-setCount(42);          // Înlocuiește tot: forțează 42
+setCount((c) => c + 1); // → 6
+setCount(42); // Înlocuiește tot: forțează 42
 // Rezultat: 42
 ```
 
@@ -1006,14 +1147,13 @@ O valoare directă după un updater **suprascrie** tot ce era înainte în coad�
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Coadă cu Valori Mixte
 
 :: content ::
@@ -1021,14 +1161,13 @@ color: sky-light
 <div class="text-base mb-3">Experimentează cu diferite combinații de valori directe și updater-uri:</div>
 
 <MixedQueueDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Updater-uri în Cod Asincron
 
 :: content ::
@@ -1042,7 +1181,7 @@ async function handleSubmit() {
   setPending(pending + 1); // snapshot: pending = 0
   await sendToServer(data);
   setPending(pending - 1); // snapshot: pending = 0 → devine -1! ❌
-  setDone(done + 1);       // snapshot: done = 0
+  setDone(done + 1); // snapshot: done = 0
 }
 ```
 
@@ -1061,14 +1200,13 @@ async function handleSubmit() {
 </div>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Procesator de Task-uri Asincrone
 
 :: content ::
@@ -1076,14 +1214,13 @@ color: sky-light
 <div class="text-base mb-2">Apasă rapid de mai multe ori pe ambele butoane și compară contoarele:</div>
 
 <AsyncTaskDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Convenții de Denumire pentru Updater-uri
 
 :: content ::
@@ -1094,18 +1231,18 @@ Parametrul funcției updater este de obicei prescurtat cu **prima literă** a nu
 
 ```jsx
 // ✅ Prescurtat (cel mai comun în React)
-setEnabled(e => !e);
-setCount(c => c + 1);
-setItems(i => [...i, newItem]);
-setUser(u => ({ ...u, name: 'Ana' }));
+setEnabled((e) => !e);
+setCount((c) => c + 1);
+setItems((i) => [...i, newItem]);
+setUser((u) => ({ ...u, name: "Ana" }));
 
 // ✅ Numele complet (mai explicit)
-setEnabled(enabled => !enabled);
-setCount(count => count + 1);
+setEnabled((enabled) => !enabled);
+setCount((count) => count + 1);
 
 // ✅ Prefix "prev" (mai descriptiv)
-setCount(prevCount => prevCount + 1);
-setItems(prevItems => prevItems.filter(i => i.id !== id));
+setCount((prevCount) => prevCount + 1);
+setItems((prevItems) => prevItems.filter((i) => i.id !== id));
 ```
 
 <AdmonitionType type="info">
@@ -1115,14 +1252,13 @@ Alege un stil consistent în proiectul tău. Prescurtarea cu prima literă este 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Recap: Cozi de Actualizări
 
 :: content ::
@@ -1160,14 +1296,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Obiectele în State sunt Imutabile
 
 :: content ::
@@ -1211,14 +1346,13 @@ Schimbarea unui obiect care este state **nu declanșează re-render** — React 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Mutație vs Obiect Nou
 
 :: content ::
@@ -1226,15 +1360,14 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele pe fiecare punct — care se mișcă?</div>
 
 <MutationProblemDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 margin: tight
 ---
-
 :: title ::
+
 # Operatorul Spread pentru Obiecte
 
 :: content ::
@@ -1245,14 +1378,14 @@ Când vrei să modifici **un singur câmp**, copiezi restul cu `...`:
 
 ```jsx
 const [hero, setHero] = useState({
-  name: 'Eroul Albastru',
+  name: "Eroul Albastru",
   hp: 100,
   score: 0,
 });
 
 function handleScoreIncrease() {
   setHero({
-    ...hero,              // copiază name și hp
+    ...hero, // copiază name și hp
     score: hero.score + 50, // suprascrie doar score
   });
 }
@@ -1260,11 +1393,11 @@ function handleScoreIncrease() {
 
 <div class="overflow-x-auto text-base mt-2">
 
-| **Câmp** | **Valoare** |
-|:---|:---|
-| `name` | Copiat din `...hero` |
-| `hp` | Copiat din `...hero` |
-| `score` | **Suprascris** cu noua valoare |
+| **Câmp** | **Valoare**                    |
+| :------- | :----------------------------- |
+| `name`   | Copiat din `...hero`           |
+| `hp`     | Copiat din `...hero`           |
+| `score`  | **Suprascris** cu noua valoare |
 
 </div>
 
@@ -1275,14 +1408,13 @@ Spread-ul este **superficial** (shallow) — copiază doar primul nivel. Câmpur
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Stats cu Spread
 
 :: content ::
@@ -1290,15 +1422,14 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele și observă în state că doar câmpul modificat se schimbă:</div>
 
 <PlayerStatsDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 margin: tight
 ---
-
 :: title ::
+
 # Obiecte Imbricate
 
 :: content ::
@@ -1309,8 +1440,9 @@ Când state-ul conține obiecte imbricate, trebuie să copiezi **fiecare nivel**
 
 ```jsx
 const [character, setCharacter] = useState({
-  name: 'Dragoș',
-  stats: {        // obiect imbricat
+  name: "Dragoș",
+  stats: {
+    // obiect imbricat
     hp: 100,
     attack: 25,
   },
@@ -1323,8 +1455,8 @@ setCharacter({ ...character, hp: 120 }); // adaugă hp la nivelul greșit!
 setCharacter({
   ...character,
   stats: {
-    ...character.stats,  // copiezi câmpurile din stats
-    hp: 120,             // suprascrii doar hp
+    ...character.stats, // copiezi câmpurile din stats
+    hp: 120, // suprascrii doar hp
   },
 });
 ```
@@ -1336,14 +1468,13 @@ Cu cât obiectele sunt mai adânc imbricate, cu atât codul devine mai dificil. 
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Personaj cu Stats Imbricate
 
 :: content ::
@@ -1351,14 +1482,13 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele și observă cum fiecare nivel al obiectului este copiat corect:</div>
 
 <CharacterEquipDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Immer — Actualizări ca Mutații
 
 :: content ::
@@ -1368,16 +1498,16 @@ color: sky-light
 **Immer** este o librărie care îți permite să scrii cod de mutație, dar produce un obiect nou imutabil:
 
 ```jsx
-import { useImmer } from 'use-immer';
+import { useImmer } from "use-immer";
 
 const [character, updateCharacter] = useImmer({
-  name: 'Dragoș',
+  name: "Dragoș",
   stats: { hp: 100, attack: 25 },
 });
 
 // ✅ Scrii ca și când ai mmodifica direct, dar Immer creează obiect nou
 function upgradeHp() {
-  updateCharacter(draft => {
+  updateCharacter((draft) => {
     draft.stats.hp += 20; // sintaxă de mutație!
   });
 }
@@ -1405,14 +1535,13 @@ function upgradeHp() {
 </div>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Immer în Practică
 
 :: content ::
@@ -1420,14 +1549,13 @@ color: sky-light
 <div class="text-base mb-3">Compară același personaj actualizat cu spread manual vs. Immer:</div>
 
 <ImmerDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Recap: Actualizarea Obiectelor
 
 :: content ::
@@ -1472,14 +1600,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Array-uri în State — Tratează-le ca Imutabile
 
 :: content ::
@@ -1493,24 +1620,24 @@ JavaScript permite mutarea array-urilor direct, dar **React cere să creezi un a
 <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border-2 border-red-500 text-sm">
 <div class="font-bold mb-2">❌ Evită (modifică array-ul)</div>
 
-| **Operație** | **Metodă** |
-|----------|--------|
-| Adăugare | `push`, `unshift` |
-| Eliminare | `pop`, `shift`, `splice` |
-| Înlocuire | `arr[i] = ...` |
-| Sortare | `sort`, `reverse` |
+| **Operație** | **Metodă**               |
+| ------------ | ------------------------ |
+| Adăugare     | `push`, `unshift`        |
+| Eliminare    | `pop`, `shift`, `splice` |
+| Înlocuire    | `arr[i] = ...`           |
+| Sortare      | `sort`, `reverse`        |
 
 </div>
 
 <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-2 border-green-500 text-sm">
 <div class="font-bold mb-2">✅ Folosește (creează array nou)</div>
 
-| **Operație** | **Metodă** |
-|----------|--------|
-| Adăugare | `[...arr]`, `concat` |
-| Eliminare | `filter`, `slice` |
-| Înlocuire | `map` |
-| Sortare | `toSorted`, `toReversed` |
+| **Operație** | **Metodă**               |
+| ------------ | ------------------------ |
+| Adăugare     | `[...arr]`, `concat`     |
+| Eliminare    | `filter`, `slice`        |
+| Înlocuire    | `map`                    |
+| Sortare      | `toSorted`, `toReversed` |
 
 </div>
 
@@ -1523,14 +1650,13 @@ JavaScript permite mutarea array-urilor direct, dar **React cere să creezi un a
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Adăugarea în Array
 
 :: content ::
@@ -1541,13 +1667,13 @@ Spre deosebire de `push`, **operatorul spread** creează un array nou:
 
 ```jsx
 // ❌ push modifică array-ul existent
-items.push({ id: nextId++, name: 'Sabie' });
+items.push({ id: nextId++, name: "Sabie" });
 
 // ✅ spread creează array NOU cu elementul adăugat la sfârșit
-setItems([...items, { id: nextId++, name: 'Sabie' }]);
+setItems([...items, { id: nextId++, name: "Sabie" }]);
 
 // ✅ sau la început (prepend)
-setItems([{ id: nextId++, name: 'Sabie' }, ...items]);
+setItems([{ id: nextId++, name: "Sabie" }, ...items]);
 ```
 
 <div class="grid grid-cols-2 gap-4 mt-2">
@@ -1565,14 +1691,13 @@ setItems([{ id: nextId++, name: 'Sabie' }, ...items]);
 </div>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Eliminarea din Array
 
 :: content ::
@@ -1586,11 +1711,11 @@ Metoda `filter` returnează un array nou fără elementele excluse:
 items.splice(index, 1);
 
 // ✅ filter creează array nou fără elementul cu id-ul respectiv
-setItems(items.filter(item => item.id !== idDeEliminat));
+setItems(items.filter((item) => item.id !== idDeEliminat));
 
 // ✅ sau orice condiție logică
-setItems(items.filter(item => item.hp > 0));      // păstrează viii
-setItems(items.filter(item => !item.selected));   // elimină selectate
+setItems(items.filter((item) => item.hp > 0)); // păstrează viii
+setItems(items.filter((item) => !item.selected)); // elimină selectate
 ```
 
 <AdmonitionType type="tip">
@@ -1600,14 +1725,13 @@ setItems(items.filter(item => !item.selected));   // elimină selectate
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Inventar — Adaugă & Elimină
 
 :: content ::
@@ -1615,14 +1739,13 @@ color: sky-light
 <div class="text-base mb-3">Adaugă obiecte din magazin în inventar (<code>[...inventory, item]</code>) și elimină-le cu <code>filter</code>:</div>
 
 <InventoryDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Transformarea cu map()
 
 :: content ::
@@ -1633,17 +1756,22 @@ color: sky-light
 
 ```jsx
 // Transformă toate elementele
-setItems(items.map(item => ({
-  ...item,
-  power: item.power * 2,  // dublează puterea tuturor
-})));
+setItems(
+  items.map((item) => ({
+    ...item,
+    power: item.power * 2, // dublează puterea tuturor
+  })),
+);
 
 // Transformă un element specific (după id)
-setItems(items.map(item =>
-  item.id === targetId
-    ? { ...item, power: item.power + 5 }  // obiect nou pentru cel vizat
-    : item                                 // restul rămân neschimbate
-));
+setItems(
+  items.map(
+    (item) =>
+      item.id === targetId
+        ? { ...item, power: item.power + 5 } // obiect nou pentru cel vizat
+        : item, // restul rămân neschimbate
+  ),
+);
 ```
 
 <AdmonitionType type="info">
@@ -1653,14 +1781,13 @@ setItems(items.map(item =>
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Carte de Vrăji — Upgrade cu map()
 
 :: content ::
@@ -1668,14 +1795,13 @@ color: sky-light
 <div class="text-base mb-3">Fiecare vrajă are putere proprie — apasă ⬆️ pentru a o upgrada cu <code>map()</code>:</div>
 
 <SpellsDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Inserare la Poziție & Sortare
 
 :: content ::
@@ -1687,9 +1813,9 @@ color: sky-light
 ```jsx
 const insertAt = 2;
 setItems([
-  ...items.slice(0, insertAt),    // elementele înainte
-  { id: nextId++, name: 'Nou' }, // elementul nou
-  ...items.slice(insertAt),       // elementele după
+  ...items.slice(0, insertAt), // elementele înainte
+  { id: nextId++, name: "Nou" }, // elementul nou
+  ...items.slice(insertAt), // elementele după
 ]);
 ```
 
@@ -1713,14 +1839,13 @@ setItems(items.toReversed());
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Obiecte în Array-uri — Capcana Shallow Copy
 
 :: content ::
@@ -1731,18 +1856,21 @@ Copierea superficială a unui array **nu copiează** și obiectele din interior:
 
 ```jsx
 const next = [...quests]; // array NOU, dar ACELEAȘI obiecte înăuntru!
-const quest = next.find(q => q.id === id);
-quest.done = true;        // ❌ modifici originalul din state!
+const quest = next.find((q) => q.id === id);
+quest.done = true; // ❌ modifici originalul din state!
 setQuests(next);
 ```
 
 ```jsx
 // ✅ Creează obiecte noi cu map() + spread
-setQuests(quests.map(q =>
-  q.id === id
-    ? { ...q, done: true }  // obiect nou
-    : q                     // obiect nemodificat
-));
+setQuests(
+  quests.map(
+    (q) =>
+      q.id === id
+        ? { ...q, done: true } // obiect nou
+        : q, // obiect nemodificat
+  ),
+);
 ```
 
 <AdmonitionType type="caution">
@@ -1752,14 +1880,13 @@ Copierea superficială creează un array nou, dar **obiectele din interior răm�
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Misiuni — Capcana Shallow Copy
 
 :: content ::
@@ -1767,14 +1894,13 @@ color: sky-light
 <div class="text-base mb-3">Bifează misiuni, apoi apasă Reset — varianta stricată a corupt <code>initial</code>, Reset nu mai funcționează:</div>
 
 <NestedArrayDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Immer pentru Array-uri
 
 :: content ::
@@ -1784,22 +1910,22 @@ color: sky-light
 Cu Immer poți folosi metode mutante direct pe draft:
 
 ```jsx
-import { useImmer } from 'use-immer';
+import { useImmer } from "use-immer";
 
 const [quests, updateQuests] = useImmer(initialQuests);
 
 // ✅ push direct pe draft
 function addQuest(name) {
-  updateQuests(draft => {
+  updateQuests((draft) => {
     draft.push({ id: nextId++, name, done: false });
   });
 }
 
 // ✅ modificare proprietate pe obiect din draft
 function toggleQuest(id) {
-  updateQuests(draft => {
-    const quest = draft.find(q => q.id === id);
-    quest.done = !quest.done;  // sintaxă de mutație — safe!
+  updateQuests((draft) => {
+    const quest = draft.find((q) => q.id === id);
+    quest.done = !quest.done; // sintaxă de mutație — safe!
   });
 }
 ```
@@ -1811,14 +1937,13 @@ Immer e ideal când ai array-uri de obiecte complexe — elimină nevoia de `map
 </AdmonitionType>
 
 </div>
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Demo: Immer cu Array de Obiecte
 
 :: content ::
@@ -1826,14 +1951,13 @@ color: sky-light
 <div class="text-base mb-3">Compară aceleași misiuni gestionate cu <code>map + spread</code> vs. <code>useImmer</code>:</div>
 
 <ArrayImmerDemo />
-
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
-
 :: title ::
+
 # Recap: Actualizarea Array-urilor
 
 :: content ::
