@@ -10,6 +10,7 @@ draw:
   enabled: true
 favicon: "./react.svg"
 ---
+
 # State
 
 Memoria componentelor
@@ -45,11 +46,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # De ce nu funcționează variabilele normale?
@@ -71,11 +74,13 @@ color: sky-light
 - UI-ul rămâne neschimbat, chiar dacă variabila s-a modificat
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Variabilă Obișnuită
@@ -93,11 +98,13 @@ Să vedem aceste probleme în acțiune - încearcă să apeși butonul:
 Valoarea se schimbă în consolă (vezi!), dar UI-ul nu se actualizează
 
 </AdmonitionType>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Hook-ul `useState`
@@ -109,11 +116,13 @@ Hook-ul <code>useState</code> ne oferă o <strong>variabilă care persistă</str
 </div>
 
 <WorkingLikeButton />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Ce este un Hook?
@@ -143,11 +152,13 @@ Hook-urile pot fi apelate **DOAR** la nivel superior al componentului — nu în
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Anatomia `useState`
@@ -190,11 +201,13 @@ function Counter() {
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Cum știe React ce state să returneze?
@@ -228,11 +241,13 @@ function Component() {
 </div>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # State-uri Multiple
@@ -244,11 +259,13 @@ Poți avea oricâte state-uri vrei într-un component - fiecare independent:
 </div>
 
 <MultipleStates />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # State este Izolat și Privat
@@ -262,6 +279,7 @@ Fiecare instanță a unui component are propriul său state, complet separat:
 <IsolatedState />
 
 </div>
+
 ---
 layout: section
 color: sky-light
@@ -269,7 +287,7 @@ color: sky-light
 
 # Parametri
 
-Ce parametri ia useState
+Ce parametri ia useState()
 
 ---
 layout: top-title
@@ -377,35 +395,35 @@ align: c
 color: sky-light
 ---
 
+:: title ::
+
+# useState(getFeedback()) vs useState(() => getFeedback())
+
 :: content ::
-
-<div class="text-lg space-y-6 ns-c-tight">
-
-Diferența dintre **useState(getFeedback())** și **useState(() => getFeedback())**:
 
 <div class="text-lg space-y-6">
 
 <div class="grid grid-cols-2 gap-6">
 
 <div class="p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
-<div class="font-bold text-xl mb-3">useState(getFeedback()) — Apel Direct (Ineficient)</div>
+<div class="font-bold text-xl mb-1"><code>useState(getFeedback())</code></div>
+<div class="text-base mb-3 text-yellow-600">Apel Direct (Ineficient)</div>
 <div class="text-sm space-y-2">
 <div>În acest caz, funcția getFeedback() este executată la fiecare randare a componentei tale.</div>
-<div>• Prima randare: React apelează getFeedback(), folosește rezultatul pentru a seta starea inițială. (Corect)</div>
-<div>• Randările următoare: Deși React are deja valoarea stării și ignoră rezultatul lui getFeedback(), funcția tot este apelată inutil de JavaScript înainte de a intra în hook-ul useState.</div>
-<div>• Problema: Dacă getFeedback() face calcule grele sau citește din localStorage, vei încetini aplicația la fiecare click sau schimbare de stare.</div>
+<div>• <strong>Prima randare:</strong> React apelează getFeedback(), folosește rezultatul pentru a seta starea inițială. (Corect)</div>
+<div>• <strong>Randările următoare:</strong> Deși React are deja valoarea stării și ignoră rezultatul lui getFeedback(), funcția tot este apelată inutil de JavaScript înainte de a intra în hook-ul useState.</div>
+<div>• <strong>Problema:</strong> Dacă getFeedback() face calcule grele sau citește din localStorage, vei încetini aplicația la fiecare click sau schimbare de stare.</div>
 </div>
 </div>
 
 <div class="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border-l-4 border-purple-500">
-<div class="font-bold text-xl mb-3">useState(() => getFeedback()) — Inițializare Leneșă (Eficient)</div>
+<div class="font-bold text-xl mb-1"><code>useState(() => getFeedback())</code></div>
+<div class="text-base mb-3 text-purple-600">Inițializare Leneșă (Eficient)</div>
 <div class="text-sm space-y-2">
 <div>Aceasta se numește <strong>Lazy Initialization</strong>.</div>
-<div>• Prima randare: React execută funcția anonimă și salvează rezultatul.</div>
-<div>• Randările următoare: React nu mai execută funcția deloc. Știe că are deja starea inițializată și sare peste acel bloc de cod.</div>
+<div>• <strong>Prima randare:</strong> React execută funcția anonimă și salvează rezultatul.</div>
+<div>• <strong>Randările următoare:</strong> React nu mai execută funcția deloc. Știe că are deja starea inițializată și sare peste acel bloc de cod.</div>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -413,40 +431,47 @@ Diferența dintre **useState(getFeedback())** și **useState(() => getFeedback()
 </div>
 
 ---
-layout: top-title
-align: c
+layout: center
 color: sky-light
 ---
 
-:: content ::
+<div class="text-2xl">
 
 <AdmonitionType type="info">
 
+<div class="text-xl space-y-4">
+
 **Regula de aur:**
-<div>• Folosește useState(valoare) pentru valori simple (string, număr, boolean).</div>
-<p></p>
-<div>• Folosește useState(() => getFeedback()) dacă inițializarea implică:</div>
-<p></p>
-  <div> ▫ localStorage.getItem() sau sessionStorage.</div>
-  <p></p>
-  <div>▫ Mapări sau filtrări pe liste mari de date.</div>
-  <p></p>
-  <div>▫ Calcule matematice complexe.</div>
+
+<div>• Folosește <code>useState(valoare)</code> pentru valori simple (string, număr, boolean).</div>
+
+<div>• Folosește <code>useState(() => getFeedback())</code> dacă inițializarea implică:</div>
+
+<div class="ml-6">▫ localStorage.getItem() sau sessionStorage.</div>
+<div class="ml-6">▫ Mapări sau filtrări pe liste mari de date.</div>
+<div class="ml-6">▫ Calcule matematice complexe.</div>
+
+</div>
 
 </AdmonitionType>
+
+</div>
 
 ---
 layout: section
 color: sky-light
 ---
+
 # Render și Commit
 
 Procesul prin care React actualizează interfața
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Cele 3 Etape ale React
@@ -480,11 +505,13 @@ De la schimbarea state-ului până la afișarea pe ecran, React urmează **3 pa�
 </div>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Pas 1: Trigger (Declanșare)
@@ -522,11 +549,13 @@ Când apeși pe un buton care apelează `setCount`, React pune în coadă un nou
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Pas 2: Render (Randare)
@@ -566,11 +595,13 @@ Procesul este **recursiv**: dacă o componentă returnează alte componente, Rea
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Rendering-ul Trebuie Să Fie Pur
@@ -610,11 +641,13 @@ Componentele **trebuie să fie funcții pure** în timpul rendering-ului:
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Pas 3: Commit (Aplicare)
@@ -646,11 +679,13 @@ După rendering, React **aplică modificările în DOM**:
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Actualizări Selective
@@ -668,11 +703,13 @@ Observă cum doar timpul se actualizează, nu și input-ul (chiar dacă totul se
 React re-renderizează **toată** componenta, dar actualizează în DOM **doar** elementele care s-au schimbat
 
 </AdmonitionType>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Recap: Render vs Commit
@@ -712,11 +749,13 @@ După commit, **browser-ul redesenează** (browser painting) pentru a afișa mod
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Rendering produce un Snapshot
@@ -753,11 +792,13 @@ Când React **re-renderizează** un component, el:
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Variabilele sunt "înghețate" în Render
@@ -791,11 +832,13 @@ export default function Counter() {
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Valoarea din Snapshot
@@ -807,11 +850,13 @@ Apasă butonul și observă ce valoare afișează alert-ul față de titlul din 
 </div>
 
 <SnapshotAlertDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Problema celor 3 Incrementări
@@ -823,11 +868,13 @@ Butonul zice "+3" — cu câte unități incrementează de fapt?
 </div>
 
 <ThreeClicksDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # De ce "+3" Devine "+1"?
@@ -869,11 +916,13 @@ Rezultat: React primește **3 instrucțiuni identice** → aplică ultima → in
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # State și Codul Asincron
@@ -891,11 +940,13 @@ Apasă rapid de mai multe ori, apoi observă valorile din alert-uri:
 Fiecare apăsare creează un **snapshot separat** — alert-urile afișează valorile din momentul apăsării, nu din momentul afișării
 
 </AdmonitionType>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Exemplu Real: Formular cu Întârziere
@@ -907,11 +958,13 @@ Trimite un mesaj, apoi <strong>schimbă destinatarul</strong> înainte ca alert-
 </div>
 
 <ChatFormDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Recap: State ca un Snapshot
@@ -951,16 +1004,20 @@ color: sky-light
 </AdmonitionType>
 
 </div>
+
 ---
 layout: section
 color: sky-light
 ---
+
 # Cum să faci mai multe actualizări într-un singur render?
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Batching — React Grupează Actualizările
@@ -1000,11 +1057,13 @@ React **nu re-renderizează** după fiecare apel `setState`. El grupează toate 
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Funcții de Actualizare — Soluția Corectă
@@ -1050,11 +1109,13 @@ setCount((c) => c + 1); // 2 → 3
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Snapshot vs Updater
@@ -1064,11 +1125,13 @@ color: sky-light
 <div class="text-base mb-3">Ambele butoane zic "+3" — apasă-le și compară rezultatele:</div>
 
 <UpdaterCompareDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Cum Procesează React Coada
@@ -1103,11 +1166,13 @@ React stochează `3` ca state pentru următorul render și apelează componenta 
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Valori Directe vs Funcții Updater
@@ -1147,11 +1212,13 @@ O valoare directă după un updater **suprascrie** tot ce era înainte în coad�
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Coadă cu Valori Mixte
@@ -1161,11 +1228,13 @@ color: sky-light
 <div class="text-base mb-3">Experimentează cu diferite combinații de valori directe și updater-uri:</div>
 
 <MixedQueueDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Updater-uri în Cod Asincron
@@ -1200,11 +1269,13 @@ async function handleSubmit() {
 </div>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Procesator de Task-uri Asincrone
@@ -1214,11 +1285,13 @@ color: sky-light
 <div class="text-base mb-2">Apasă rapid de mai multe ori pe ambele butoane și compară contoarele:</div>
 
 <AsyncTaskDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Convenții de Denumire pentru Updater-uri
@@ -1252,11 +1325,13 @@ Alege un stil consistent în proiectul tău. Prescurtarea cu prima literă este 
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Recap: Cozi de Actualizări
@@ -1296,11 +1371,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Obiectele în State sunt Imutabile
@@ -1346,11 +1423,13 @@ Schimbarea unui obiect care este state **nu declanșează re-render** — React 
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Mutație vs Obiect Nou
@@ -1360,12 +1439,14 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele pe fiecare punct — care se mișcă?</div>
 
 <MutationProblemDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 margin: tight
 ---
+
 :: title ::
 
 # Operatorul Spread pentru Obiecte
@@ -1408,11 +1489,13 @@ Spread-ul este **superficial** (shallow) — copiază doar primul nivel. Câmpur
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Stats cu Spread
@@ -1422,12 +1505,14 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele și observă în state că doar câmpul modificat se schimbă:</div>
 
 <PlayerStatsDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 margin: tight
 ---
+
 :: title ::
 
 # Obiecte Imbricate
@@ -1468,11 +1553,13 @@ Cu cât obiectele sunt mai adânc imbricate, cu atât codul devine mai dificil. 
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Personaj cu Stats Imbricate
@@ -1482,11 +1569,13 @@ color: sky-light
 <div class="text-base mb-3">Apasă butoanele și observă cum fiecare nivel al obiectului este copiat corect:</div>
 
 <CharacterEquipDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Immer — Actualizări ca Mutații
@@ -1535,11 +1624,13 @@ function upgradeHp() {
 </div>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Immer în Practică
@@ -1549,11 +1640,13 @@ color: sky-light
 <div class="text-base mb-3">Compară același personaj actualizat cu spread manual vs. Immer:</div>
 
 <ImmerDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Recap: Actualizarea Obiectelor
@@ -1600,11 +1693,13 @@ color: sky-light
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Array-uri în State — Tratează-le ca Imutabile
@@ -1650,11 +1745,13 @@ JavaScript permite mutarea array-urilor direct, dar **React cere să creezi un a
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Adăugarea în Array
@@ -1691,11 +1788,13 @@ setItems([{ id: nextId++, name: "Sabie" }, ...items]);
 </div>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Eliminarea din Array
@@ -1725,11 +1824,13 @@ setItems(items.filter((item) => !item.selected)); // elimină selectate
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Inventar — Adaugă & Elimină
@@ -1739,11 +1840,13 @@ color: sky-light
 <div class="text-base mb-3">Adaugă obiecte din magazin în inventar (<code>[...inventory, item]</code>) și elimină-le cu <code>filter</code>:</div>
 
 <InventoryDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Transformarea cu map()
@@ -1781,11 +1884,13 @@ setItems(
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Carte de Vrăji — Upgrade cu map()
@@ -1795,11 +1900,13 @@ color: sky-light
 <div class="text-base mb-3">Fiecare vrajă are putere proprie — apasă ⬆️ pentru a o upgrada cu <code>map()</code>:</div>
 
 <SpellsDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Inserare la Poziție & Sortare
@@ -1839,11 +1946,13 @@ setItems(items.toReversed());
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Obiecte în Array-uri — Capcana Shallow Copy
@@ -1880,11 +1989,13 @@ Copierea superficială creează un array nou, dar **obiectele din interior răm�
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Misiuni — Capcana Shallow Copy
@@ -1894,11 +2005,13 @@ color: sky-light
 <div class="text-base mb-3">Bifează misiuni, apoi apasă Reset — varianta stricată a corupt <code>initial</code>, Reset nu mai funcționează:</div>
 
 <NestedArrayDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Immer pentru Array-uri
@@ -1937,11 +2050,13 @@ Immer e ideal când ai array-uri de obiecte complexe — elimină nevoia de `map
 </AdmonitionType>
 
 </div>
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Demo: Immer cu Array de Obiecte
@@ -1951,11 +2066,13 @@ color: sky-light
 <div class="text-base mb-3">Compară aceleași misiuni gestionate cu <code>map + spread</code> vs. <code>useImmer</code>:</div>
 
 <ArrayImmerDemo />
+
 ---
 layout: top-title
 align: c
 color: sky-light
 ---
+
 :: title ::
 
 # Recap: Actualizarea Array-urilor
